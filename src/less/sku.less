@@ -1,0 +1,102 @@
+@rem: 100rem;
+
+.sku-attr {
+  .attr-con {
+    margin-bottom: 30/@rem;
+    // .clearfix();
+    
+    .attr-des {
+      .clearfix();
+      li {
+        float: left;
+        a {
+          display: block;
+          text-align: center;
+          border: 1px solid @w24-color;
+          background-color: #FFF;
+          transition: all .2s;
+          &.cur {
+            border: 1px solid #333;
+            background-color: #333;
+            color: #FFF;
+          }
+          &.disabled {
+            opacity: 0.25;
+            // border: 1px solid @w10-color;
+            // color: @w10-color;
+          }
+        }
+
+        .first-sku {
+          margin: 24/@rem 28/@rem 0 0;
+          // .wh(58, 58);
+          border-radius: 50%;
+          .bgc-w();
+          border: 1px solid @w24-color;
+          img {
+            display: block;
+            .wh(68, 68);
+            border-radius: 50%;
+            border: 2px solid #FFFFFF;
+          }
+
+          &.cur {
+            border: 1px solid #333;
+          }
+
+          &.disabled {
+            opacity: 0.25;
+            // border: 1px solid @w10-color;
+            // img {
+            //   opacity: 0.5;
+            // }
+          }
+        }
+        .other-sku {
+          margin: 20/@rem 20/@rem 0 0;
+          // height: 48/@rem;
+          line-height: 48/@rem;
+          padding: 0 20/@rem;
+          min-width: 90/@rem;
+        }
+      }
+    }
+    .btn-choose {
+      padding: 0 18/@rem;
+      .hl(48,48);
+      background: #FAFAFA;
+      color: #D0D0D0;
+      text-align: center;
+      margin-top: 20/@rem;
+
+      &.first-choose {
+        .hl(50,50);
+        margin-top: 32/@rem;
+        border-radius: 24/@rem;
+      }
+      span {
+        .f-scale();
+      }
+    }
+    
+  }
+}
+
+.attr-title {
+  position: relative;
+  font-size: 24/@rem;
+  height: 30/@rem;
+}
+
+.pos-right {
+  position: absolute;
+  top: 3/@rem;
+  right: -12/@rem;
+  color: #999;
+  font-weight: normal;
+  font-size: 20/@rem;
+  transform: scale(0.85);
+  i {
+    font-size: 24/@rem;
+  }
+}

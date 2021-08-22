@@ -1,0 +1,154 @@
+@rem: 100rem;
+// fontsize
+.fontSize(@px) {
+  font-size: @px/@rem;
+}
+// width && height
+.wh(@w, @h) {
+  width: @w/@rem;
+  height: @h/@rem;
+}
+// width && height && line-height
+.whl (@w, @h) {
+  width: @w/@rem;
+  height: @h/@rem;
+  line-height: @h/@rem;
+}
+// height
+.height(@px) {
+  height: @px/@rem;
+  line-height: @px/@rem;
+}
+
+.hl(@h, @l) {
+  height: @h/@rem;
+  line-height: @l/@rem;
+}
+// line
+.line1() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.line1-cut() {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.line2() {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  /* autoprefixer: off*/
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on*/
+}
+
+.clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// 动画
+.keyframes (@prefix,@name,@content) when (@prefix=def) {
+  @keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=moz) {
+  @-moz-keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=o) {
+  @-o-keyframes @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=webkit) {
+  @-webkit-keyframes  @name {
+    @content();
+  }
+}
+.keyframes (@prefix,@name,@content) when (@prefix=all) {
+  .keyframes(moz,@name,@content);
+  .keyframes(o,@name,@content);
+  .keyframes(webkit,@name,@content);
+  .keyframes(def,@name,@content);
+}
+
+.transformStyle() {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform: preserve-3d;
+  -ms-transform: preserve-3d;
+  -o-transform: preserve-3d;
+}
+
+.flex() {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between() {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-end() {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.bgc-w() {
+  background-color: #FFFFFF;
+}
+.bgc-b() {
+  background-color: #33383F;
+}
+
+// font-size: 10px
+.f-scale() {
+  transform: scale(0.85);
+}
+
+// 色
+@red: #F4333C;
+@yellow: #ffb400;
+@yellow2: #FFD75E;
+@black: #33383F;
+
+@w65-color: rgba(0, 0, 0, 0.65);
+@w45-color: rgba(0, 0, 0, 0.45);
+@w24-color: rgba(0, 0, 0, 0.24);
+@w10-color: rgba(0, 0, 0, 0.1);
+@b05-color: rgba(0, 0, 0, 0.05);
+@b14-color: rgba(0, 0, 0, 0.14);
+@bg25-color: rgba(0, 0, 0, 0.25);
+@bg-yellow: #FFBB00;
+@w25-yellow: rgba(255, 187, 0, 0.25);
+@w84-yellow: rgba(255, 187, 0, 0.84);
+@w14-yellow: rgba(255, 187, 0, 0.14);
+@w-error: #F4333C;
+
+
+
+
+

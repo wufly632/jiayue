@@ -1,0 +1,30 @@
+{
+  "code": 20000,
+  "message": "",
+  "data": {
+    "banners": ["https://img.alicdn.com/imgextra/i2/2206686532409/O1CN01kBsCEi1TfMncjVw1S_!!2206686532409-0-lubanimage.jpg"],
+    "list": [
+      {
+        "sellPrice": 100,
+        "id": 1,
+        "comparePrice": 199,
+        "mainPicture": "https://g-search1.alicdn.com/img/bao/uploaded/i4/i2/1905882464/O1CN011U4YM0F0X2S73du_!!1905882464.jpg",
+        "title": "One-Step Hair Dryer and Styler"
+      },
+      {
+        "sellPrice": 80,
+        "id": 2,
+        "comparePrice": 199,
+        "mainPicture": "https://gw3.alicdn.com/bao/uploaded/i4/3017834712/TB1aMWnaHSYBuNjSspfXXcZCpXa_!!0-item_pic.jpg",
+        "title": "Super Strong Waterproof Tape"
+      },
+      {
+        "sellPrice": 199,
+        "id": 3,
+        "comparePrice": 199,
+        "mainPicture": "http://img.alicdn.com/imgextra/i1/1847790286/TB2pgutmBfH8KJjy1XbXXbLdXXa_!!1847790286.jpg_2200x2200Q50s50.jpg",
+        "title": "Neck Hanging Fan"
+      }
+    ]
+  }
+}

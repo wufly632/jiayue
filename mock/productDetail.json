@@ -1,0 +1,20 @@
+{
+  "code": 20000,
+  "message": "",
+  "data": {
+    "id": 5,
+    "images": [
+      "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
+      "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG"
+    ],
+    "title": "Foldable storage and convenient mosquito net sheet1",
+    "subTitle": "title2",
+    "imageList": [
+      "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
+      "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG",
+      "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
+      "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG"
+    ],
+    "isFav": false
+  }
+}

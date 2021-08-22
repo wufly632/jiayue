@@ -1,0 +1,23 @@
+{
+  "code": 20000,
+  "message": "",
+  "data": {
+    "cartProducts": [
+      {
+        "cartId": 111,
+        "productId": 111,
+        "skuId": 1,
+        "title": "eddie",
+        "mainPicture": "https://wufly.oss-cn-hangzhou.aliyuncs.com/supply/products/000001000005/logo/0366e0da-6050-ebb5-3a68-7f50f18448aa_size800x800.png",
+        "stock": 199,
+        "price": 14000,
+        "num": 1,
+        "props": "White;0-3 Months"
+      }
+    ],
+    "offlineProducts": [],
+    "totalPrice": 14000,
+    "totalNum": 1,
+    "userAddress": "incididunt nisi mollit proident reprehenderit"
+  }
+}
