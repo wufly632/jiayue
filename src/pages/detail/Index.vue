@@ -5,9 +5,9 @@
         <div class="back" @click="()=> { this.$router.go(-1) }">
           <i class="iconfont">&#xe62f;</i>
         </div>
-        <router-link to="/share" class="share">
+        <div class="share">
           <i class="iconfont">&#xe617;</i>
-        </router-link>
+        </div>
       </div>
     </div>
 
@@ -38,13 +38,13 @@
 
 <script>
 import { Swipe, SwipeItem } from 'components/swipe'
-
+import vLogin from 'mixins/validateLogin'
 export default {
-  props: {},
   components: {
     Swipe,
     SwipeItem,
   },
+  mixins: [vLogin],
   data () {
     return {
       productData: {},
@@ -69,7 +69,7 @@ export default {
 
       this.request('ProductDetail', {
         id: this.$route.params.id || ''
-      }).then((res) => {
+      }).then(res => {
         const { code, data } = res
         if (code === 20000 && data) {
           this.productData = data
@@ -94,30 +94,18 @@ export default {
       // 登录验证
       if (!this.validateLogin()) return 
       // 请求收藏接口 @TODO
-      this.productData.hasFollowed = !this.productData.hasFollowed
-    },
-    
-    // 登录校验
-    validateLogin() {
-      try {
-        // 是否存在地址
-        let localInfoData = localStorage.getItem('mall_token_info')
 
-        if (!localInfoData) {
-          this.$router.replace({
-            path: '/my',
-            query: {
-              redirect: this.$router.currentRoute.fullPath
-            }
-          })
-
-          return false
-        } else {
-          return true
+      this.request('Fave', {
+        productId: this.productData.id
+      }).then(res => {
+        const { code, data } = res
+        if (code === 20000) {
+          this.productData.hasFollowed = !this.productData.hasFollowed
+          console.log(this.productData.hasFollowed)
         }
-      } catch(e) {
-        return false
-      }
+      }, err => {
+        this.$Toast(err)
+      })
     },
 
   }

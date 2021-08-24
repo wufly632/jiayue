@@ -1,12 +1,12 @@
 import Vue from "vue"
 import App from "./App"
 import router from "./router"
-// import initComponents from "./initComponents"
+import initComponents from "./initComponents"
 import Http from "./libs/http"
 import store from './store'
 import clipboard from 'clipboard'
 
-// initComponents(Vue)
+initComponents(Vue)
 Vue.use(Http)
 
 // rem 换算

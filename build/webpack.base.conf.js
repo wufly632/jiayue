@@ -40,6 +40,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': resolve('src'),
       'img': resolve('src/images'),
+      'mixins': resolve('src/mixins'),
       'components': resolve('src/components'),
       'utils': resolve('src/utils'),
       'less': resolve('src/less'),

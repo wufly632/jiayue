@@ -1,20 +1,46 @@
 {
   "code": 20000,
-  "message": "",
+  "message": "success",
   "data": {
-    "list": [
-      {
-        "image": "https://pic1.zhimg.com/v2-3c2ddcd73bd3b084d54ce9686a7be1ed_1440w.jpg",
-        "title": "国内高端品牌迦悦，建立美好家园"
-      },
-      {
-        "image": "https://pic4.zhimg.com/80/v2-1c9a8da287e59deb0cd52eb27c97fedb_1440w.jpg",
-        "title": "国内高端品牌迦悦，建立美好家园"
-      },
-      {
-        "image": "https://pic2.zhimg.com/80/v2-678005b0f446bcc6d17d7ba1bf014b49_1440w.jpg",
-        "title": "国内高端品牌迦悦，建立美好家园"
-      }
-    ]
+    "1": {
+      "name": "三思该九",
+      "total": 2,
+      "products": [
+        {
+          "id": 100,
+          "name": "世又事广什大",
+          "productModel": "ut Ut Excepteur",
+          "mainPicture": "https://www.tikahome.cn/upload/20190725/small_201907251357168215.jpg",
+          "materialChangeAble": true
+        },
+        {
+          "id": 70,
+          "productModel": "pariatur incididunt Excepteur",
+          "mainPicture": "https://www.tikahome.cn/upload/20190725/small_201907251401398255.jpg",
+          "name": "党划需型切圆农",
+          "materialChangeAble": false
+        }
+      ]
+    },
+    "2": {
+      "name": "三思该九",
+      "total": 2,
+      "products": [
+        {
+          "id": 100,
+          "name": "世又事广什大",
+          "productModel": "ut Ut Excepteur",
+          "mainPicture": "https://www.tikahome.cn/upload/20170111/small_201701111119048125.jpg",
+          "materialChangeAble": true
+        },
+        {
+          "id": 70,
+          "productModel": "pariatur incididunt Excepteur",
+          "mainPicture": "https://www.tikahome.cn/upload/20190908/small_201909081103222307.JPG",
+          "name": "党划需型切圆农",
+          "materialChangeAble": true
+        }
+      ]
+    }
   }
 }

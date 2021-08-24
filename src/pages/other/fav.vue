@@ -1,79 +1,131 @@
 <template>
   <div class="fav-main">
-    <div class="product-list">
-      <router-link 
-        v-for="(item, index) in favs"
-        :key="index"
-        to="/detail/1" >
-        <div class="img">
-          <img :src="item.image" />
-        </div>
-        <div class="text">
-          <div class="title">{{ item.title }}</div>
-          <div class="sub-title">{{ item.subTitle }}</div>
-        </div>
-      </router-link>
+    <backtopbar text="收藏列表" />
+
+    <div 
+      class="products-category"
+      v-for="(item, index) in productData"
+      :key="index">
+      <div class="title-main">{{ item.name }} <span>({{ item.products.length }})</span></div>
+      <div class="product-list">
+        <router-link 
+          v-for="(productItem, productIndex) in item.products"
+          :key="productIndex"
+          :to="{ path: `/detail/${productItem.id}`}" >
+          <div class="img">
+            <div class="close" @click="handleFav(productItem.id)"><i class="iconfont">&#xe60b;</i></div>
+            <img v-lazy="productItem.mainPicture && productItem.mainPicture.ossimg()" />
+          </div>
+          <div class="text">
+            <div class="title">{{ productItem.productModel }}</div>
+            <div class="sub-title">{{ productItem.materialChangeAble ? '材质可换' : '' }}</div>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import vLogin from 'mixins/validateLogin'
 export default {
   data() {
     return {
       // 产品
-      favs: [
-        {
-          title: 'SM-D60',
-          subTitle: 'Sideboards',
-          image: 'https://www.tikahome.cn/upload/20190725/small_201907251357168215.jpg'
-        },
-        {
-          title: 'SM-D60',
-          subTitle: 'Sideboards',
-          image: 'https://www.tikahome.cn/upload/20190725/small_201907251401398255.jpg'
-        },
-        {
-          title: 'SM-D60',
-          subTitle: 'Sideboards',
-          image: 'https://www.tikahome.cn/upload/20210719/small_202107191602562005.JPG'
-        }
-      ]
-        
+      productData: {}
     }
   },
+  mixins: [vLogin],
+  created() {
+    this.getFavList()
+  },
+  methods: {
+    handleFav(productId) {
+      this.request('Fave', {
+        productId,
+      }).then(res => {
+        const { code } = res
+        if (code === 20000) {
+          this.getFavList()
+        }
+      }, err => {
+        this.$Toast(err)
+      })
+    },
+    getFavList() {
+      // 登录验证
+      if (!this.validateLogin()) return 
+
+      this.$Indicator.open()
+      this.request('FaveList', {}).then(res => {
+        const { code, data } = res
+        if (code === 20000 && data) {
+          this.productData = data
+        }
+
+        this.$Indicator.close()
+      }, err => {
+        this.$Indicator.close()
+        this.$Toast(err)
+      })
+    },
+  }
 }
 </script>
 
 <style lang="less" scoped>
 @import '~less/tool.less';
 .fav-main {
-  padding: 10/@rem 30/@rem;
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    a {
-      width: 50%;
-      display: block;
-      margin-bottom: 20/@rem;
+  .products-category {
+    padding: 30/@rem;
+
+    .title-main {
+      margin-bottom: 30/@rem;
+      font-size: 30/@rem;
     }
-    .img {
-      position: relative;
-      height: 240/@rem;
+    .product-list {
       display: flex;
-      align-items: center;
-      img {
-        width: 100%;
+      flex-wrap: wrap;
+      .close {
+        cursor: pointer;
+        position: absolute;
+        right: -10/@rem;
+        top: -10/@rem;
+        color: #fff;
+        .wh(38, 38);
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        .flex-center();
+      }
+      a {
+        width: 50%;
         display: block;
+        margin-bottom: 20/@rem;
+        padding-right: 10/@rem;
+        &:nth-child(2n) {
+          padding-left: 10/@rem;
+          padding-right: 0;
+        }
       }
-    }
-    .text {
-      padding: 10/@rem;
-      .title {
-        font-size: 30/@rem;
-        font-weight: bold;
+      .img {
+        position: relative;
+        height: 240/@rem;
+        display: flex;
+        align-items: center;
+        img {
+          width: 100%;
+          display: block;
+        }
       }
-      .sub-title {}
+      .text {
+        padding: 10/@rem;
+        .title {
+          .line1();
+          font-size: 30/@rem;
+          font-weight: bold;
+        }
+        .sub-title {}
+      }
     }
   }
 }

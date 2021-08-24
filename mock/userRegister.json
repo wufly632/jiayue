@@ -1,5 +1,7 @@
 {
   "code": 20000,
-  "message": "fugiat dolor tempor",
-  "data": null
+  "message": "success",
+  "data": {
+    "accessToken": "mock"
+  }
 }

@@ -43,7 +43,7 @@ AxiosInst.interceptors.request.use(
     }
 
     // 登录的token
-    config.headers.authorization = 'Bearer ' + JSON.parse(localStorage.getItem('mall_token_info') || JSON.stringify({ token: '' })).token
+    config.headers.authorization = 'Bearer ' + JSON.parse(localStorage.getItem('jiayue_token') || JSON.stringify({ token: '' })).token
     
     return config
   },
@@ -65,11 +65,10 @@ AxiosInst.interceptors.response.use(
 
       if (data.code === 40001) {
         // 清理token，返回登录页
-        window.localStorage && localStorage.removeItem('mall_token_info')
-        window.sessionStorage && sessionStorage.removeItem('mall_selected_address')
+        window.localStorage && localStorage.removeItem('jiayue_token')
 
         router.replace({
-          path: '/login',
+          path: '/my',
           query: {
             redirect: router.currentRoute.fullPath
           }

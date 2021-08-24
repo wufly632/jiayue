@@ -81,7 +81,7 @@ Http.install = function (Vue) {
           resolve(response.data);
         })
         .catch((error) => {
-          this.$Toast(error && error.message || 'System Error')
+          this.$Toast(error && error.message || '系统错误')
           reject(error);
         });
     });
@@ -107,7 +107,7 @@ Http.install = function (Vue) {
           resolve(response.data);
         })
         .catch((error) => {
-          this.$Toast(error && error.message || 'System Error')
+          this.$Toast(error && error.message || '系统错误')
           reject(error);
         });
     });

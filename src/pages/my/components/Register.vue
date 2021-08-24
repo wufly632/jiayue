@@ -46,10 +46,6 @@ export default {
       type: Boolean,
       default: false
     },
-    isForgot: {
-      type: Boolean,
-      default: false
-    }
   },
   data() {
     return {
@@ -58,18 +54,12 @@ export default {
       isSend: false,
       params: {
         mobile: '',
-        code: '',
         password: '',
-        passwordConfirmation: '',
-        areaCode: '234',
       },
       // 错误信息
       errorMsg: {
         mobile: '',
-        code: '',
         password: '',
-        passwordConfirmation: '',
-        agree: ''
       }
     }
   },
@@ -79,87 +69,30 @@ export default {
   watch: {
     'isShow': function() {
       this.showCloseEye = true
-      // this.passwordType = 'password'
       this.isSend = false,
       this.params = {
         mobile: '',
-        code: '',
         password: '',
-        passwordConfirmation: '',
-        areaCode: '234',
       }
       // 错误信息
       this.errorMsg = {
         mobile: '',
-        code: '',
         password: '',
-        passwordConfirmation: '',
-        agree: ''
       }
     }
   },
   methods: {
-    // 验证码
-    handleRequestCode() {
-      if (!this.params.mobile) return this.errorMsg.mobile = 'Invalid mobile phone number'
-
-      if (this.isSend) return
-      this.isSend = true
-      // 倒计时后之后释放
-      this.countDownSeconds(60)
-
-      this.request('UserSendCode', {
-        mobile: this.params.mobile,
-        areaCode: '234',
-        scene: !this.isForgot ? 'register' : 'reset'
-      }).then(res => {
-        const { code, message } = res
-        if (code === 20000) {
-          // TODO STH
-        } else {
-          this.resetCode()
-          this.$Toast(message)
-        }
-      }, err => {
-        this.resetCode()
-        this.$Toast(err)
-      }).catch(() => {})
-    },
-    // 重置code
-    resetCode() {
-      this.sendCodeWord = `REQUESTCODE`
-      this.isSend = false
-    },
-    // 倒计时 - 60s
-    countDownSeconds(leftTime) {
-      if (leftTime > 0) {
-        let s = Math.floor((leftTime) % 60) || leftTime
-        leftTime = leftTime - 1
-        // 递归每秒调用countDown方法，显示动态时间效果
-        setTimeout(() => {
-          this.countDownSeconds(leftTime)
-        }, 1000)
-        
-        this.sendCodeWord = `Left time ${s}s`
-      } else {
-        this.resetCode()
-      }
-    },
     // 注册
     handleRegisterReset() {
-      const url = !this.isForgot ? 'Register' : 'UserReset'
-      const msg = !this.isForgot ? 'register' : 'reset password'
       // 验证表单
       if (this.validateForm()) return
 
       this.$Indicator.open()
-      this.request(url, this.params).then((res) => {
+      this.request('Register', this.params).then((res) => {
         const { code } = res
         if (code === 20000) {
-          this.$router.push('/login')
-          this.$Toast(`Successful ${msg}, please login!`)
-          // 埋点
-          !this.isForgot && window.fbq && fbq('track', 'CompleteRegistration')
+          this.$Toast(`注册成功，请登录`)
+          this.$emit('callback', true)
         }
         this.$Indicator.close()
       }, err => {
@@ -172,35 +105,27 @@ export default {
       let hasError = false
       // 非空判定
       if (!this.params.mobile) {
-        this.errorMsg.mobile = 'Invalid mobile phone number'
+        this.errorMsg.mobile = '手机号不能为空'
         hasError = true
       } else {
         this.errorMsg.mobile = ''
       }
 
-      if (!this.params.code) {
-        this.errorMsg.code = 'Verification code error'
+      if (!(/^1[3456789]\d{9}$/.test(this.params.mobile))) {
+        this.errorMsg.mobile = '请输入有效的手机号'
         hasError = true
       } else {
-        this.errorMsg.code = ''
+        this.errorMsg.mobile = ''
       }
 
       if (!this.params.password || 
-        (this.params.password && this.params.password.length < 8)) {
-        this.errorMsg.password = 'At least eight characters'
+        (this.params.password && this.params.password.length < 6)) {
+        this.errorMsg.password = '密码至少6位'
         hasError = true
       } else {
         this.errorMsg.password = ''
       }
-
-      if (!this.params.passwordConfirmation ||
-        this.params.passwordConfirmation !== this.params.password) {
-        this.errorMsg.passwordConfirmation = 'Inconsistent passwords'
-        hasError = true
-      } else {
-        this.errorMsg.passwordConfirmation = ''
-      }
-
+    
       // if (!this.isAgree && !this.isForgot) {
       //   this.errorMsg.agree = 'Please check the Service Agreement first!'
       //   hasError = true

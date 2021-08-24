@@ -64,7 +64,7 @@ export default new Router({
       path: '/aboutus',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/aboutus'))
+          resolve(require('pages/other/Aboutus'))
         }, 'aboutus')
       }
     },
@@ -74,7 +74,7 @@ export default new Router({
       path: '/address',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/address'))
+          resolve(require('pages/other/Address'))
         }, 'address')
       }
     },
@@ -83,17 +83,8 @@ export default new Router({
       path: '/case',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/case'))
+          resolve(require('pages/other/Case'))
         }, 'case')
-      }
-    },
-    {
-      name: 'contactus',
-      path: '/contactus',
-      component: function (resolve) {
-        require.ensure([], function () {
-          resolve(require('pages/other/contactus'))
-        }, 'contactus')
       }
     },
     {
@@ -101,21 +92,21 @@ export default new Router({
       path: '/fav',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/fav'))
+          resolve(require('pages/other/Fav'))
         }, 'fav')
       }
     },
     
     
-    {
-      name: '404',
-      path: '/404',
-      component: function (resolve) {
-        require.ensure([], function () {
-          resolve(require('pages/404.vue'))
-        }, '404')
-      }
-    },
+    // {
+    //   name: '404',
+    //   path: '/404',
+    //   component: function (resolve) {
+    //     require.ensure([], function () {
+    //       resolve(require('pages/404.vue'))
+    //     }, '404')
+    //   }
+    // },
 
     {
       path: '*',

@@ -43,7 +43,7 @@ export default {
       params: {
         mobile: '',
         password: ''
-      }
+      },
     }
   },
   created() {
@@ -60,25 +60,26 @@ export default {
     }
   },
   methods: {
+    checkPhone() { 
+      return !(/^1[3456789]\d{9}$/.test(this.params.mobile))
+    },
     handleLogin() {
-      if (this.params.mobile === '') return this.$Toast('Please enter a valid phone number.')
-      if (this.params.password === '') return this.$Toast('Please enter a valid password.')
-      localStorage.removeItem('mall_token_info')
+      if (this.params.mobile === '') return this.$Toast('请输入您的手机号码')
+      if (this.params.password === '') return this.$Toast('请输入您的密码')
+      if (this.checkPhone()) return this.$Toast('请输入有效的手机号码')
+
       this.$Indicator.open()
-      
       this.request('Login', this.params).then((res) => {
         const { code, data } = res
         if (code === 20000 && data) {
-          const { access_token } = data
-
+          const { accessToken } = data
+          localStorage.removeItem('jiayue_token')
           // 记录token
-          localStorage.setItem('mall_token_info', JSON.stringify({
-            token: access_token
+          localStorage.setItem('jiayue_token', JSON.stringify({
+            token: accessToken
           }))
 
-          this.getUserInfo(access_token)
-        } else {
-          // this.$Toast(message)
+          this.$emit('callback')
         }
 
         this.$Indicator.close()
@@ -96,30 +97,6 @@ export default {
         this.showPassword = false
         this.passwordType = 'password'
       }
-    },
-    // 获取用户信息
-    getUserInfo(token) {
-      this.request('UserInfo', {}).then((res) => {
-        const { code, data, message } = res
-        if (code === 20000 && data) {
-          // data 中有用户信息、姓名、地址等
-          const userObj = {
-            token,
-            data,
-          }
-
-          // 记录用户信息
-          localStorage.setItem('mall_token_info', JSON.stringify(userObj))
-          
-        } else {
-          this.$Toast(message || 'UserInfo error!')
-        }
-
-        this.$Indicator.close()
-      }, err => {
-        this.$Indicator.close()
-        this.$Toast(err)
-      })
     },
   }
 }
