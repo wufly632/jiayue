@@ -1,6 +1,5 @@
 <template>
   <div class="home-main">
-    <div class="in-animation a-fadeout"></div>
     <div class="category-list">
       <router-link :to="{ path: '/category/1' }">
         <img src="https://www.tikahome.cn/images/wap/wap3_02.jpg" />
@@ -53,16 +52,6 @@ export default {
 <style lang="less" scoped>
 @import '~less/tool.less';
 .home-main {
-  .in-animation {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    overflow: hidden;
-    background: url(https://www.tikahome.cn/images/wap/wap4.jpg) center center no-repeat #000000;
-  }
   .category-list {
     img {
       display: block;

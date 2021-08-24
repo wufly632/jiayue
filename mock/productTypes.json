@@ -1,0 +1,26 @@
+{
+  "code": 20000,
+  "message": "success",
+  "data": {
+    "types": [
+      {
+        "status": 1,
+        "id": 1,
+        "name": "新品",
+        "enName": "News"
+      },
+      {
+        "status": 2,
+        "id": 2,
+        "name": "沙发",
+        "enName": "Sofas"
+      },
+      {
+        "status": 3,
+        "id": 3,
+        "name": "书柜",
+        "enName": "Bookshelves"
+      }
+    ]
+  }
+}

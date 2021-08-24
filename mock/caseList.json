@@ -1,0 +1,24 @@
+{
+  "code": 20000,
+  "message": "",
+  "data": {
+    "total": 67,
+    "data": [
+      {
+        "id": 72,
+        "title": "国内高端品牌迦悦，建立美好家园",
+        "mainPicture": "https://pic1.zhimg.com/v2-3c2ddcd73bd3b084d54ce9686a7be1ed_1440w.jpg"
+      },
+      {
+        "id": 20,
+        "mainPicture": "https://pic4.zhimg.com/80/v2-1c9a8da287e59deb0cd52eb27c97fedb_1440w.jpg",
+        "title": "国内高端品牌迦悦，建立美好家园"
+      },
+      {
+        "id": 20,
+        "mainPicture": "https://pic2.zhimg.com/80/v2-678005b0f446bcc6d17d7ba1bf014b49_1440w.jpg",
+        "title": "国内高端品牌迦悦，建立美好家园"
+      }
+    ]
+  }
+}

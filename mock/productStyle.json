@@ -1,0 +1,28 @@
+{
+  "code": 20000,
+  "message": "",
+  "data": {
+    "styles": [
+      {
+        "name": "1",
+        "id": 1,
+        "bigPicture": "https://www.tikahome.cn/images/wap/wap3_02.jpg",
+        "smallPicture": "https://www.tikahome.cn/images/wap/r2.png"
+      },
+
+      {
+        "name": "2",
+        "id": 2,
+        "bigPicture": "https://www.tikahome.cn/images/wap/wap3_08.jpg",
+        "smallPicture": "https://www.tikahome.cn/images/wap/r3.png"
+      },
+
+      {
+        "name": "3",
+        "id": 3,
+        "bigPicture": "https://www.tikahome.cn/images/wap/wap3_04.jpg",
+        "smallPicture": "https://www.tikahome.cn/images/wap/r6.png"
+      }
+    ]
+  }
+}

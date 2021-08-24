@@ -13,7 +13,7 @@
 
     <div class="detail-swipe">
       <Swipe class="my-swipe img-swipe" :showIndicators="false" :showNum="true">
-        <SwipeItem v-for="(img, index) in imgSwipe" :key="index">
+        <SwipeItem v-for="(img, index) in productData.mainPictures" :key="index">
           <img :src="img && img.formatOssimg(400)">
         </SwipeItem>
       </Swipe>
@@ -21,17 +21,17 @@
 
     <div class="detail-goods mb18" >
       <div class="icon-fav" @click="handleFav">
-        <img v-if="!isFav" src="../../images/icon_add_fav.png" />
+        <img v-if="!productData.hasFollowed" src="../../images/icon_add_fav.png" />
         <img v-else src="../../images/icon_faved.png" />
       </div>
       
-      <div class="title f-b">SM-TV07 </div>
-      <div class="sub-title">Sideboards</div>
+      <div class="title f-b">{{ productData.productModel }}</div>
+      <div class="sub-title">{{ productData.materialChangeAble ? '材质可换' : '' }}</div>
     </div>
 
-    <div class="detail-imagelist" v-if="goodsData.imageList">
+    <div class="detail-imagelist" v-if="productData.pictures">
       <div class="title">产品详情</div>
-      <img v-for="(item,index) in goodsData.imageList" :key="index" v-lazy="item && item.formatOssimg(400)"/>
+      <img v-for="(item,index) in productData.pictures" :key="index" v-lazy="item && item.formatOssimg(400)"/>
     </div>
   </div>
 </template>
@@ -47,9 +47,7 @@ export default {
   },
   data () {
     return {
-      goodsData: {},
-      imgSwipe: [], // 大图
-      isFav: false, // 收藏
+      productData: {},
     }
   },
   created () {
@@ -74,9 +72,7 @@ export default {
       }).then((res) => {
         const { code, data } = res
         if (code === 20000 && data) {
-          this.goodsData = data || {}
-          this.isFav = this.goodsData.isFave
-          this.imgSwipe =  this.goodsData.images
+          this.productData = data
         }
 
         this.$Indicator.close()
@@ -88,16 +84,17 @@ export default {
 
     resetData() {
       document.body.scrollTop = document.documentElement.scrollTop = 0
-      this.goodsData = {}
-      this.imgSwipe = [] // 大图
-      this.isFav = false // 收藏
+      this.productData = {}
     },
 
     // handlePageBack() {
     //   this.$router.go(-1)
     // },
     handleFav() {
-      this.isFav = !this.isFav
+      // 登录验证
+      if (!this.validateLogin()) return 
+      // 请求收藏接口 @TODO
+      this.productData.hasFollowed = !this.productData.hasFollowed
     },
     
     // 登录校验
@@ -108,7 +105,7 @@ export default {
 
         if (!localInfoData) {
           this.$router.replace({
-            path: '/login',
+            path: '/my',
             query: {
               redirect: this.$router.currentRoute.fullPath
             }
@@ -149,7 +146,7 @@ export default {
     .icon-fav {
       position: absolute;
       top: 40/@rem;
-      right: 40/@rem;
+      right: 50/@rem;
       cursor: pointer;
       img {
         .wh(68, 68);

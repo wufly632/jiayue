@@ -6,17 +6,39 @@
  */
 var fs = require('fs')
 var setOnline = [
-  // 登录 - 登录 - login
+  // 注册
   {
-    name: 'login',
+    name: 'userRegister',
+    type: 'post',
+    url: '/api/user/register'
+  },
+
+  // 登录 
+  {
+    name: 'userLogin',
     type: 'post',
     url: '/api/user/login'
   },
-  // 登录 - 获取用户信息
+
+  // 风格
   {
-    name: 'login',
+    name: 'productStyle',
     type: 'get',
-    url: '/api/user/info'
+    url: '/api/product/style',
+  },
+
+  // 商品类别
+  {
+    name: 'productTypes',
+    type: 'get',
+    url: '/api/product/types'
+  },
+  
+  // 商品列表
+  {
+    name: 'productList',
+    type: 'get',
+    url: '/api/product/list',
   },
 
   // 商品详情
@@ -26,6 +48,40 @@ var setOnline = [
     url: '/api/product/detail'
   },
   
+  // 收藏
+  {
+    name: 'success',
+    type: 'post',
+    url: '/api/fave',
+  },
+
+  // 收藏列表
+  {
+    name: 'faveList',
+    type: 'get',
+    url: '/api/fave/list',
+  },
+
+  // 案例
+  {
+    name: 'caseList',
+    type: 'get',
+    url: '/api/case/list',
+  },
+
+  // 案例详情
+  {
+    name: 'caseDetail',
+    type: 'get',
+    url: '/api/case/detail'
+  },
+
+  // 商品详情
+  {
+    name: 'productDetail',
+    type: 'get',
+    url: '/api/product/detail'
+  }, 
 ]
 
 // 输出配置项

@@ -10,13 +10,13 @@
     </div>
     <ul class="filter-content a-fadeinT-s" v-if="isShowFilterContent">
       <li 
-        v-for="(item,index) in categories"
+        v-for="(item,index) in productTypes"
         :key="index"
-        :class="{'actived': item.categoryId === categoryActiveId}" 
+        :class="{'actived': item.id === categoryActiveId}" 
         @click="handleCategory(item)" 
         >
         <span></span>
-        <font>{{ item.name }}</font>&nbsp;\&nbsp;{{ item.en }}
+        <font>{{ item.name }}</font>&nbsp;\&nbsp;{{ item.enName }}
       </li>
     </ul>
 
@@ -25,18 +25,18 @@
       class="products-category"
       v-for="(item, index) in productData"
       :key="index">
-      <div class="title-main">{{ item.categoryName }} <span>({{ item.total }})</span></div>
+      <div class="title-main">{{ item.name }} <span>({{ item.products.length }})</span></div>
       <div class="product-list">
         <router-link 
           v-for="(productItem, productIndex) in item.products"
           :key="productIndex"
-          to="/detail/1" >
+          :to="{ path: `/detail/${productItem.id}`}" >
           <div class="img">
-            <img :src="productItem.image" />
+            <img v-lazy="productItem.mainPicture && productItem.mainPicture.ossimg()" />
           </div>
           <div class="text">
-            <div class="title">{{ productItem.title }}</div>
-            <div class="sub-title">{{ productItem.subTitle }}</div>
+            <div class="title">{{ productItem.productModel }}</div>
+            <div class="sub-title">{{ productItem.materialChangeAble ? '材质可换' : '' }}</div>
           </div>
         </router-link>
       </div>
@@ -58,91 +58,75 @@ export default {
       isShowFilterContent: false,
       isShowGotoTop: false,
       // 分类
-      categories: [
-        {
-          categoryId: 1,
-          name: '全部',
-          en: 'All'
-        },
-        {
-          categoryId: 2,
-          name: '新品',
-          en: ' News'
-        },
-        {
-          categoryId: 3,
-          name: '沙发',
-          en: ' Sofas'
-        },
-        {
-          categoryId: 4,
-          name: '书柜',
-          en: 'Bookshelves'
-        },
-      ],
-      categoryActiveId: 0,
+      productTypes: [],
+      categoryActiveId: -2,
 
       // 产品
-      productData: [
-        {
-          categoryId: 1,
-          categoryName: '新品',
-          total: 3,
-          products: [
-            {
-              title: 'SM-D60',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20190725/small_201907251357168215.jpg'
-            },
-            {
-              title: 'SM-D60',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20190725/small_201907251401398255.jpg'
-            },
-            {
-              title: 'SM-D60',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20210719/small_202107191602562005.JPG'
-            }
-          ]
-        },
-        {
-          categoryId: 2,
-          categoryName: '沙发',
-          total: 3,
-          products: [
-            {
-              title: 'D-84',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20190908/small_201909081102050949.JPG'
-            },
-            {
-              title: 'D-85',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20170111/small_201701111119048125.jpg'
-            },
-            {
-              title: 'D-60',
-              subTitle: 'Sideboards',
-              image: 'https://www.tikahome.cn/upload/20190908/small_201909081103222307.JPG'
-            }
-          ]
-        }
-      ]
+      productData: [],
+      productDataAll: []
     }
   },
   computed: {},
   created() {},
-  watch: {},
+  watch: {
+    $route: {
+      handler: function(route) {
+        const { id } = route.params
+        if (id) {
+          this.getList()
+        }
+      },
+      immediate: true
+    }
+  },
+  created() {
+    this.getTpyes()
+  },
   mounted() {
     window.addEventListener('scroll', this.scollFunction, true)
   },
   methods: {
-    getList() {},
+    getTpyes() {
+      this.request('ProductTypes', {}).then((res) => {
+        const { code, data } = res
+        if (code === 20000 && data) {
+          const { types } = data
+          this.productTypes = [{
+            id: -1,
+            name: "全部",
+            enName: "All",
+            isAll: true
+          }].concat(types)
+        }
+      }, err => {
+        this.$Toast(err)
+      })
+    },
+    getList() {
+      this.request('ProductList', {
+        styleId: this.$route.params.id,
+      }).then((res) => {
+        const { code, data } = res
+        if (code === 20000 && data) {
+          this.productData = data
+          this.productDataAll = data
+        }
+      }, err => {
+        this.$Toast(err)
+      })
+    },
     handleCategory(item) {
-      // 请求接口
-      this.categoryActiveId = item.categoryId
+      this.categoryActiveId = item.id
       this.isShowFilterContent = !this.isShowFilterContent
+      // 如果是全部
+      if (item.id === -1) {
+        this.productData = this.productDataAll
+        return
+      }
+
+      this.productData = {
+        [item.id]: this.productDataAll[item.id]
+      }
     },
     scollFunction() {
       let scollTop = document.body.scrollTop || document.documentElement.scrollTop
@@ -227,12 +211,18 @@ export default {
         width: 50%;
         display: block;
         margin-bottom: 20/@rem;
+        padding-right: 10/@rem;
+        &:nth-child(2n) {
+          padding-left: 10/@rem;
+          padding-right: 0;
+        }
       }
       .img {
         position: relative;
         height: 240/@rem;
         display: flex;
         align-items: center;
+        overflow: hidden;
         img {
           width: 100%;
           display: block;
@@ -241,6 +231,7 @@ export default {
       .text {
         padding: 10/@rem;
         .title {
+          .line1();
           font-size: 30/@rem;
           font-weight: bold;
         }

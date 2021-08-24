@@ -1,20 +1,25 @@
 <template>
-  <div id="app" @click="isShowSelectMenu = false">
+  <div id="app" @click="isShowSelectedStyle = false">
+    <div class="global-home-animation a-fadeout" v-if="isShowHomeAnimation"></div>
     <!-- global-header  -->
     <div class="global-header">
       <div class="nav-left">
-        <div class="select-main" @click.stop="isShowSelectMenu = !isShowSelectMenu">
-          <div class="select-style">风格选择</div>
-          <i class="iconfont" :class="{'rotate180': isShowSelectMenu}">&#xe611;</i>
+        <div class="select-main" @click.stop="isShowSelectedStyle = !isShowSelectedStyle">
+          <div class="select-style">
+            <span v-if="selectedStyle === '风格选择'">风格选择</span>
+            <img v-else :src="selectedStyle" />
+          </div>
+          <i class="iconfont" :class="{'rotate180': isShowSelectedStyle}">&#xe611;</i>
         </div>
       </div>
 
-      <div v-if="isShowSelectMenu" class="select-menu a-fadeinTX" >
+      <div v-if="isShowSelectedStyle" class="select-menu a-fadeinTX" >
         <div 
-          v-for="(item, index) in categoryData" 
+          class="content"
+          v-for="(item, index) in stylesData" 
           :key="index" 
           @click="handleCategory(item)">
-          <div class="content">{{ item.name }}</div>
+          <img :src="item.smallPicture" />
         </div>
       </div>
 
@@ -35,21 +40,11 @@
           <i class="iconfont">&#xe60b;</i>
         </div>
         <ul>
-          <li>
-            <router-link to="/index">网站首页</router-link>
-          </li>
-          <li>
-            <router-link to="/aboutus">关于我们</router-link>
-          </li>
-          <li>
-            <router-link to="/case">精品案例</router-link>
-          </li>
-          <li>
-            <router-link to="/concatus">联系我们</router-link>
-          </li>
-          <li>
-            <router-link to="/login">登录</router-link>
-          </li>
+          <li @click="handleGoto('index')">网站首页</li>
+          <li @click="handleGoto('aboutus')">关于我们</li>
+          <li @click="handleGoto('case')">精品案例</li>
+          <li @click="handleGoto('address')">联系我们</li>
+          <li @click="handleGoto('my')">登录</li>
         </ul>
       </div>
     </div>
@@ -58,9 +53,9 @@
       <router-view></router-view>
     </transition>
 
-    <div class="global-footer">
+    <div class="global-footer" style="display: none;">
       <p>© 2021 JIAYUE</p>
-      <p>技术支持：迦悦</p>
+      <p>@迦悦 给您幸福的味道</p>
     </div>
   </div>
 </template>
@@ -68,35 +63,43 @@
 export default {
   data () {
     return {
-      selectedMenu: '风格选择',
-      isShowSelectMenu: false,
+      selectedStyle: '风格选择',
+      isShowSelectedStyle: false,
       isShowNavSide: false,
-      categoryData: [
-        {
-          categoryId: 1,
-          name: '现代风'
-        },
-        {
-          categoryId: 2,
-          name: 'Daviny'
-        }
-      ]
+      stylesData: [],
+      isShowHomeAnimation: false
     }
   },
-  created() {},
+  created() {
+    const pathname = window.location.pathname
+    if (pathname === '/' || pathname === '/index' || (pathname.split('/index') &&  pathname.split('/index')[0] === '/index'))  {
+      this.isShowHomeAnimation = true
+    }
+    this.getProductStyle()
+  },
   methods: {
+    getProductStyle() {
+      this.request('ProductStyle', {}).then((res) => {
+        const { code, data } = res
+        if (code === 20000 && data) {
+          const { styles } = data
+          this.stylesData = styles
+        }
+      }, err => {
+        this.$Toast(err)
+      })
+    },
     handleSelect() {
-      this.isShowSelectMenu = !this.isShowSelectMenu
+      this.isShowSelectedStyle = !this.isShowSelectedStyle
     },
     handleCategory(item) {
-      this.selectedMenu = item.name
-      this.isShowSelectMenu = !this.isShowSelectMenu
-      this.$router.push({path: '/category/' + item.categoryId })
-
-      console.log('/category/' + item.categoryId )
+      this.selectedStyle = item.smallPicture
+      this.isShowSelectedStyle = !this.isShowSelectedStyle
+      this.$router.push({path: '/category/' + item.id })
     },
     handleGoto(url) {
       this.isShowNavSide = false
+      this.isShowNavSide = false 
       this.$router.push({ path: `/${url}` })
     }
   }
@@ -115,7 +118,22 @@ img[lazy=error] {
   background-size: 50% auto;
 }
 
+.global-home-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+  background: url(https://www.tikahome.cn/images/wap/wap4.jpg) center center no-repeat #000000;
+}
+
 .global-header {
+  position: sticky;
+  top: 0;
+  z-index: 6;
   width: 100%;
   height: 100/@rem;
   background-color: #FFF;
@@ -132,32 +150,36 @@ img[lazy=error] {
 
     .select-main {
       position: relative;
-      display: flex;
+      .flex-between();
       align-items: center;
       width: 200/@rem;
-      .select-style {}
+      .select-style {
+        img {
+          height: 40/@rem;
+        }
+      }
       i {
         font-weight: bold;
         font-size: 30/@rem;
         color: #cecece;
-        margin-left: 10/@rem;
+        // margin-left: 20/@rem;
       }
     }
   }
   .select-menu {
     position: absolute;
     left: 0;
-    top: 88/@rem;
+    top: 98/@rem;
     z-index: 98;
     font-size: 32/@rem;
     font-weight: bold;
-    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
     .content {
       padding: 20/@rem 30/@rem;
       background-color: #ffffff;
       border-bottom: 1px solid #ececec;
       border-right: 1px solid #ececec;
-      min-width: 2rem;
+      min-width: 2.4rem;
 
       img {
         height: 40/@rem;
@@ -217,9 +239,14 @@ img[lazy=error] {
 .global-footer {
   .flex-between();
   align-items: center;
-  height: 80/@rem;
+  height: 50/@rem;
   padding: 0 30/@rem;
   color: #cecece;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 </style>
