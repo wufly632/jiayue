@@ -24,7 +24,10 @@
       </div>
     </div>
     
-    <div class="btn-login f-b" @click="handleLogin">登 录</div>
+    <div class="login-wechat" >
+      <div class="btn-login f-b" @click="handleLogin">登 录</div>
+      <img src="../../../images/wechat.png" />
+  </div>
   </div>
 </template>
 

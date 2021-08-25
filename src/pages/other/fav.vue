@@ -13,7 +13,7 @@
           :key="productIndex"
           :to="{ path: `/detail/${productItem.id}`}" >
           <div class="img">
-            <div class="close" @click="handleFav(productItem.id)"><i class="iconfont">&#xe60b;</i></div>
+            <div class="close" @click.prevent="handleFav(productItem.id)"><i class="iconfont">&#xe60b;</i></div>
             <img v-lazy="productItem.mainPicture && productItem.mainPicture.ossimg()" />
           </div>
           <div class="text">

@@ -6,7 +6,7 @@ export default {
       try {
         // 是否存在地址
         let localInfoData = localStorage.getItem('jiayue_token')
-
+        console.log(this.$router.currentRoute.fullPath)
         if (!localInfoData) {
           !isMy && this.$router.replace({
             path: '/my',

@@ -17,14 +17,16 @@
         <li @click="isShowLogin = true">登录<i class="iconfont">&#xe62e;</i></li>
         <li @click="isShowLogin = false">注册<i class="iconfont">&#xe62e;</i></li>
       </ul>
+
     </div>
 
     <div v-else class="login-word-main">
-      <div class="title">迦悦：</div>
-      <div class="sub-title">您已登录，欢迎您来到迦悦！</div>
+      <div class="title">迦悦登录区</div>
+      <div class="sub-title">您已登录，欢迎您！</div>
+      <div class="sub-title" @click="handleLogout">退出登录 / 切换账号</div>
       <div class="word-center">
         <router-link to="/index">
-          <div class="go-btn">首页新款</div>
+          <div class="go-btn">去首页</div>
         </router-link>
         <router-link to="/case">
           <div class="go-btn">精品案例</div>
@@ -60,14 +62,19 @@ export default {
       // 哪里来回那里去
       const { redirect } = this.$route.query
       if (redirect === undefined || redirect === 'undefined') {
-        this.$router.push({
-          name: 'home'
-        })
+        // this.$router.push({
+        //   name: 'home'
+        // })
       } else {
         this.$router.push({
           path: decodeURIComponent(redirect)
         })
       }
+    },
+    handleLogout() {
+      localStorage.removeItem('jiayue_token')
+      this.isLogin = false
+      this.isShowLogin = true
     }
   }
 }
@@ -120,5 +127,4 @@ export default {
     }
   }
 }
-
 </style>
