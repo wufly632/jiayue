@@ -5,7 +5,7 @@
         <div class="back" @click="()=> { this.$router.go(-1) }">
           <i class="iconfont">&#xe62f;</i>
         </div>
-        <div class="share">
+        <div class="share" @click="handleShare" :data-clipboard-text="wurl">
           <i class="iconfont">&#xe617;</i>
         </div>
       </div>
@@ -39,6 +39,8 @@
 <script>
 import { Swipe, SwipeItem } from 'components/swipe'
 import vLogin from 'mixins/validateLogin'
+import { share, isWechat } from 'utils/share'
+
 export default {
   components: {
     Swipe,
@@ -48,6 +50,7 @@ export default {
   data () {
     return {
       productData: {},
+      wurl: window.location.href
     }
   },
   created () {
@@ -108,6 +111,30 @@ export default {
       })
     },
 
+    handleShare() {
+      if (isWechat()) {
+        share({
+          title: this.productData.title,
+          content: this.productData.productModel,
+          shareImage: this.productData.mainPictures[0],
+        })
+      } else {
+        this.handleCopy()
+        setTimeout(() => {
+          window.open('weixin://')
+        }, 1500)
+      }
+    },
+    handleCopy() {
+      let self = this
+      let clipboard = new this.clipboard('.share')
+      clipboard.on('success', function() {
+        self.$Toast('已复制链接，去微信分享给好友')
+      });
+      clipboard.on('error', function() {
+        // self.$Toast('复制失败')
+      })
+    }
   }
 }
 </script>
