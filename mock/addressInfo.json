@@ -1,0 +1,20 @@
+{
+  "code": 20000,
+  "message": "success",
+  "data": {
+    "address": [
+      {
+        "longitude": "120.271566",
+        "latitude": "30.192656",
+        "title": "迦悦生活",
+        "content": "萧山区科创中心A座7楼"
+      },
+      {
+        "longitude": "120.271566",
+        "latitude": "30.192656",
+        "title": "迦悦生活",
+        "content": "萧山区科创中心A座7楼"
+      }
+    ]
+  }
+}

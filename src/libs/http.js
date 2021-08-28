@@ -12,13 +12,13 @@ Http.install = function (Vue) {
    * @param toast 是否提示
    * @returns {string}
    */
-  Vue.prototype.request = function (method, opts, toast) {
+  Vue.prototype.request = function (method, opts, urlPlus) {
     //如果有给 toast 参数则显示 loading 加载数据
-    if (toast && typeof toast === "boolean") {
-      Vue.prototype.$loading("加载中...");
-    } else if (toast && typeof toast === "string") {
-      Vue.prototype.$loading(toast);
-    }
+    // if (toast && typeof toast === "boolean") {
+    //   Vue.prototype.$loading("加载中...");
+    // } else if (toast && typeof toast === "string") {
+    //   Vue.prototype.$loading(toast);
+    // }
     let m = methodMap[method];
     if (m) {
       let optsType = typeof opts;
@@ -28,12 +28,14 @@ Http.install = function (Vue) {
       if (typeof m.method === "undefined") {
         return false;
       }
+
+      let url = urlPlus ? (m.url + urlPlus) : m.url
       if (m.method === "get") {
-        return Vue.prototype.apiGet(m.url, opts);
+        return Vue.prototype.apiGet(url, opts);
       } else if (m.method === "post") {
         var json = false;
         if (m.json) json = true;
-        return Vue.prototype.apiPost(m.url, opts, json);
+        return Vue.prototype.apiPost(url, opts, json);
       } else {
         return false;
       }
