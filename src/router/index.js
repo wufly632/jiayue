@@ -101,7 +101,7 @@ export default new Router({
       path: '/fav',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/Fav'))
+          resolve(require('pages/other/fav'))
         }, 'fav')
       }
     },
