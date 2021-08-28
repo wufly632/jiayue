@@ -45,7 +45,7 @@ var setOnline = [
   {
     name: 'productDetail',
     type: 'get',
-    url: '/api/product/detail'
+    url: '/api/product/detail/100'
   },
   
   // 收藏

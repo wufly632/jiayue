@@ -71,8 +71,8 @@ export default {
       this.$Indicator.open()
 
       this.request('ProductDetail', {
-        id: this.$route.params.id || ''
-      }).then(res => {
+        // id: this.$route.params.id || ''
+      }, '/' + this.$route.params.id).then(res => {
         const { code, data } = res
         if (code === 20000 && data) {
           this.productData = data
