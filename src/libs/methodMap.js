@@ -26,6 +26,14 @@ const methodMap = {
   /** 案例详情 **/
   CaseDetail: {url: '/api/case/detail', method: 'get'},
 
+  /** 关于我们 **/
+  AboutInfo: {url: '/api/about/info', method: 'get'},
+  /** 联系我们 **/
+  ContactInfo: {url: '/api/contact/info', method: 'get'},
+
+  /** 地址信息 **/
+  AddressInfo: {url: '/api/address/info', method: 'get'},
+  
 }
 
 export default methodMap

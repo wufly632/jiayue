@@ -1,0 +1,7 @@
+{
+  "code": 20000,
+  "message": "success",
+  "data": {
+    "content": "<p>关于我们的内容描述</p>"
+  }
+}

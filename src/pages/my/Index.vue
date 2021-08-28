@@ -3,12 +3,12 @@
   <div class="my-main">
     <div class="login-word-main" v-if="!isLogin">
       <div v-if="isShowLogin">
-        <div class="title">迦悦登录区</div>
+        <div class="title">Inside co 迦悦生活登录区</div>
         <div class="sub-title">为了访问这些内容，你需要注册用户并登录网站输入您的用户名和密码.</div>
         <Login :isShow="isShowLogin" @callback="handleSuccessLogin"/>
       </div>
       <div v-else>
-        <div class="title">迦悦注册区</div>
+        <div class="title">Inside co 迦悦生活注册区</div>
         <div class="sub-title">通过在此区域的注册，您将可以访问专门为您的业务选择的一组文档，例如立即下载高分辨率的图片。</div>
         <Register :isShow="!isShowLogin" @callback="isShowLogin = true"/>
       </div>
@@ -21,7 +21,7 @@
     </div>
 
     <div v-else class="login-word-main">
-      <div class="title">迦悦登录区</div>
+      <div class="title">Inside co 迦悦生活登录区</div>
       <div class="sub-title">您已登录，欢迎您！</div>
       <div class="sub-title" @click="handleLogout">退出登录 / 切换账号</div>
       <div class="word-center">

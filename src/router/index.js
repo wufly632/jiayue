@@ -88,6 +88,15 @@ export default new Router({
       }
     },
     {
+      name: 'caseDetail',
+      path: '/caseDetail/:id',
+      component: function (resolve) {
+        require.ensure([], function () {
+          resolve(require('pages/other/CaseDetail'))
+        }, 'caseDetail')
+      }
+    },
+    {
       name: 'fav',
       path: '/fav',
       component: function (resolve) {

@@ -82,6 +82,26 @@ var setOnline = [
     type: 'get',
     url: '/api/product/detail'
   }, 
+  // 关于我们
+  {
+    name: 'aboutInfo',
+    type: 'get',
+    url: '/api/about/info'
+  }, 
+  // 联系我们
+  {
+    name: 'contactInfo',
+    type: 'get',
+    url: '/api/contact/info'
+  },
+
+  {
+    name: 'addressInfo',
+    type: 'get',
+    url: '/api/address/info'
+  },
+
+
 ]
 
 // 输出配置项

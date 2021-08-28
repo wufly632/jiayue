@@ -55,7 +55,7 @@
 
     <div class="global-footer" style="display: none;">
       <p>© 2021 JIAYUE</p>
-      <p>@迦悦 给您幸福的味道</p>
+      <p>@给您幸福的味道</p>
     </div>
   </div>
 </template>
