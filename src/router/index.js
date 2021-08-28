@@ -64,7 +64,7 @@ export default new Router({
       path: '/aboutus',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/Aboutus'))
+          resolve(require('pages/other/aboutus'))
         }, 'aboutus')
       }
     },
@@ -74,7 +74,7 @@ export default new Router({
       path: '/address',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/Address'))
+          resolve(require('pages/other/address'))
         }, 'address')
       }
     },
@@ -83,7 +83,7 @@ export default new Router({
       path: '/case',
       component: function (resolve) {
         require.ensure([], function () {
-          resolve(require('pages/other/Case'))
+          resolve(require('pages/other/case'))
         }, 'case')
       }
     },
