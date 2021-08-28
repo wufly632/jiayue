@@ -33,7 +33,7 @@ export default {
       this.request('CaseList', {}).then(res => {
         const { code, data } = res
         if (code === 20000 && data) {
-          this.caseData = data.data
+          this.caseData = data.cases
         }
 
         this.$Indicator.close()
