@@ -13,6 +13,11 @@ Vue.use(Http)
 import { remChange } from "./utils/remChange"
 remChange()
 
+// 图片预览
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview)
+
 // checkwebp
 import "./utils/checkwebp"
 
