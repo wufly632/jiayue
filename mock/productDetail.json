@@ -7,13 +7,13 @@
     "styleId": 98,
     "typeId": 7,
     "productModel": "D78",
-    "pictures": [
+    "detailPictures": [
       "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
       "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG",
       "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
       "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG"
     ],
-    "mainPictures": [
+    "pictures": [
       "https://www.tikahome.cn/upload/20191211/small_201912111325427837.jpg",
       "https://www.tikahome.cn/upload/20210719/small_202107191602565647.JPG"
     ],

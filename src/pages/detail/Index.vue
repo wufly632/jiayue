@@ -13,7 +13,7 @@
 
     <div class="detail-swipe">
       <Swipe class="my-swipe img-swipe" :showIndicators="false" :showNum="true">
-        <SwipeItem v-for="(img, index) in productData.mainPictures" :key="index">
+        <SwipeItem v-for="(img, index) in productData.pictures" :key="index">
           <img :src="img && img.formatOssimg(400)">
         </SwipeItem>
       </Swipe>
@@ -31,7 +31,7 @@
 
     <div class="detail-imagelist" v-if="productData.pictures">
       <div class="title">产品详情</div>
-      <img v-for="(item,index) in productData.pictures" :key="index" v-lazy="item && item.formatOssimg(400)"/>
+      <img v-for="(item,index) in productData.detailPictures" :key="index" v-lazy="item && item.formatOssimg(400)"/>
     </div>
   </div>
 </template>
