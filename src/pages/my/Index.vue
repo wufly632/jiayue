@@ -62,9 +62,7 @@ export default {
       // 哪里来回那里去
       const { redirect } = this.$route.query
       if (redirect === undefined || redirect === 'undefined') {
-        // this.$router.push({
-        //   name: 'home'
-        // })
+        this.isLogin = true
       } else {
         this.$router.push({
           path: decodeURIComponent(redirect)
