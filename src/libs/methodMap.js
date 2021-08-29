@@ -17,7 +17,7 @@ const methodMap = {
   ProductDetail: {url: '/api/product/detail', method: 'get'},
 
   /** 收藏 **/
-  Fave: {url: '/api/fave', method: 'post'},
+  Fave: {url: '/api/fave/save', method: 'post'},
   /** 收藏列表 **/
   FaveList: {url: '/api/fave/list', method: 'get'},
 

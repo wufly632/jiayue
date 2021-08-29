@@ -52,7 +52,7 @@ var setOnline = [
   {
     name: 'success',
     type: 'post',
-    url: '/api/fave',
+    url: '/api/fave/save',
   },
 
   // 收藏列表
