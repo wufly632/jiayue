@@ -84,6 +84,7 @@ export default {
         if (code === 20000 && data) {
           const { styles } = data
           this.stylesData = styles
+          window.stylesData = styles
         }
       }, err => {
         this.$Toast(err)

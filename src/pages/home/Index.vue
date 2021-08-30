@@ -1,14 +1,11 @@
 <template>
   <div class="home-main">
     <div class="category-list">
-      <router-link :to="{ path: '/category/1' }">
-        <img src="https://www.tikahome.cn/images/wap/wap3_02.jpg" />
-      </router-link>
-      <router-link :to="{ path: '/category/2' }">
-        <img src="https://www.tikahome.cn/images/wap/wap3_08.jpg" />
-      </router-link>
-      <router-link :to="{ path: '/category/3' }">
-        <img src="https://www.tikahome.cn/images/wap/wap3_04.jpg" />
+      <router-link 
+        v-for="(item, index) in stylesData"
+        :key="index"
+        :to="{ path: '/category/' + item.id  }">
+        <img :src="item.bigPicture && item.bigPicture.ossimg()" />
       </router-link>
     </div>
   </div>
@@ -18,33 +15,18 @@
 export default {
   components: {},
   data() {
-    return {}
+    return {
+      stylesData: []
+    }
   },
   computed: {},
   created() {},
   watch: {},
-  mounted() {},
-  methods: {
-    // 获取页面除推荐列表外的数据
-    getHomeData() {
-      this.$Indicator.open()
-      this.request('Home', {}).then((res) => {
-        const { code, data } = res
-
-        if (code === 20000 && data) {
-          const { banners, categories, ads } = data
-          this.imgSwipe = banners || []
-          this.categories = categories || []
-          this.ads = ads || []
-        }
-
-        this.$Indicator.close()
-      }, err => {
-        this.$Indicator.close()
-        this.$Toast(err)
-      })
-    },
+  mounted() {
+    console.log(window.stylesData)
+    this.stylesData = window.stylesData
   },
+  methods: {},
   destroyed() {}
 }
 </script>
