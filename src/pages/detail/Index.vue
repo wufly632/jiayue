@@ -112,7 +112,6 @@ export default {
 
     handleShare() {
       let isWec = isWechat()
-      console.log(123, isWec)
       if (isWec) {
         share({
           that: this,

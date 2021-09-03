@@ -1,13 +1,12 @@
 export function share({ that, title, content, shareImage}) {
   that.request('WechatShareUrl', {
-    url: window.location.href
+    url: location.href
   }).then(res => {
-    console.log(res)
     const { code, data } = res
     
     if (code === 20000) {
+      alert('成功')
       const { config } = data
-
       wx.config({
         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
         appId: config.appId, // 必填，公众号的唯一标识
@@ -26,41 +25,27 @@ export function share({ that, title, content, shareImage}) {
         wx.onMenuShareTimeline({
           title: title, // 分享标题
           desc: content, // 分享描述
-          link: window.location.href, // 分享链接
+          link: location.href, // 分享链接
           imgUrl: shareImage, // 分享图标
-          success: function () {
-            // 用户确认分享后执行的回调函数
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-          },
+          success: function () {},
+          cancel: function () {},
         })
         // 分享给朋友
         wx.onMenuShareAppMessage({
           title: title, // 分享标题
           desc: content, // 分享描述
-          link: window.location.href, // 分享链接
+          link: location.href, // 分享链接
           imgUrl: shareImage, // 分享图标
-          type: "", // 分享类型,music、video或link，不填默认为link
-          dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
-          success: function () {
-            // 用户确认分享后执行的回调函数
-            // console.log("分享成功========>>")
-          },
-          cancel: function () {
-            // 用户取消分享后执行的回调函数
-            // console.log("分享成功========>>");
-          },
+          success: function () {},
+          cancel: function () {},
         })
       })
+    } else {
+      alert('系统异常')
     }
-  }, err => {
-    this.$Toast(err)
   })
 
   wx.error(function (res) {
-    alert('res:')
-    alert(res)
     alert(res.errMsg)
   })
 }
