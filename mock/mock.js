@@ -100,7 +100,12 @@ var setOnline = [
     type: 'get',
     url: '/api/address/info'
   },
-
+  // 分享
+  {
+    name: 'share',
+    type: 'get',
+    url: '/api/backend/wechat/shareUrl'
+  },
 
 ]
 
