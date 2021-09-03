@@ -111,9 +111,10 @@ export default {
     },
 
     handleShare() {
-      let isWec =  isWechat()
+      let isWec = isWechat()
       if (isWec) {
         share({
+          that: this,
           title: this.productData.title,
           content: this.productData.productModel,
           shareImage: this.productData.pictures[0],

@@ -33,6 +33,10 @@ const methodMap = {
 
   /** 地址信息 **/
   AddressInfo: {url: '/api/address/info', method: 'get'},
+
+  /** 微信分享 **/
+  WechatShareUrl: {url: '/api/backend/wechat/shareUrl', method: 'get'},
+  
   
 }
 
