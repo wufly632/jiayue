@@ -68,8 +68,7 @@ export default {
   methods: {
     // 获取详情页基础数据
     getDetailData() {
-      this.$Indicator.open()
-
+      // this.$Indicator.open()
       this.request('ProductDetail', {
         // id: this.$route.params.id || ''
       }, '/' + this.$route.params.id).then(res => {
@@ -112,11 +111,12 @@ export default {
     },
 
     handleShare() {
-      if (isWechat()) {
+      let isWec =  isWechat()
+      if (isWec) {
         share({
           title: this.productData.title,
           content: this.productData.productModel,
-          shareImage: this.productData.mainPictures[0],
+          shareImage: this.productData.pictures[0],
         })
       } else {
         this.handleCopy()

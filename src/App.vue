@@ -1,13 +1,14 @@
 <template>
   <div id="app" @click="isShowSelectedStyle = false">
-    <div class="global-home-animation a-fadeout" v-if="isShowHomeAnimation"></div>
+    <div class="global-home-animation a-fadeout" v-if="isShowHomeAnimation">
+    </div>
     <!-- global-header  -->
     <div class="global-header">
       <div class="nav-left">
         <div class="select-main" @click.stop="isShowSelectedStyle = !isShowSelectedStyle">
           <div class="select-style">
             <span v-if="selectedStyle === '风格选择'">风格选择</span>
-            <img v-else :src="selectedStyle" />
+            <img v-else :src="selectedStyle && selectedStyle.ossimg()" />
           </div>
           <i class="iconfont" :class="{'rotate180': isShowSelectedStyle}">&#xe611;</i>
         </div>
@@ -128,7 +129,7 @@ img[lazy=error] {
   height: 100%;
   text-align: center;
   overflow: hidden;
-  background: url(https://www.tikahome.cn/images/wap/wap4.jpg) center center no-repeat #000000;
+  background: url("./images/jiayue_logo.png") center center no-repeat #000000;
 }
 
 .global-header {
