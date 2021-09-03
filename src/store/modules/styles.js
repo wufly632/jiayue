@@ -1,24 +1,23 @@
 import Vue from "vue"
 
 const state = {
-  cartnum: 0
+  stylesData: []
 }
 
 const mutations = {
-  SET_NUM: (state, num) => {
-    state.cartnum = num
+  SET_STYLES: (state, styles) => {
+    state.stylesData = styles
   }
 }
 
 const actions = {
-  // 获取cartnum
-  getCartNum({ commit }, callback) {
+  getStylesData({ commit }, callback) {
     return new Promise((resolve, reject) => {
-      Vue.prototype.request('CartNum', {}).then((res) => {
+      Vue.prototype.request('ProductStyle', {}).then((res) => {
         const { code, data, message } = res
         if (code === 20000 && data) {
-          const { num } = data
-          commit('SET_NUM', num)
+          const { styles } = data
+          commit('SET_STYLES', styles)
 
           callback && callback()
           resolve(res)

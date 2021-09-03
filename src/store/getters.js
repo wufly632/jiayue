@@ -1,4 +1,4 @@
 const getters = {
-  cartnum: state => state.cart.cartnum,
+  stylesData: state => state.styles.stylesData,
 }
 export default getters

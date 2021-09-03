@@ -12,20 +12,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   components: {},
   data() {
-    return {
-      stylesData: []
-    }
+    return {}
   },
   computed: {},
   created() {},
   watch: {},
-  mounted() {
-    console.log(window.stylesData)
-    this.stylesData = window.stylesData
-  },
+  computed: mapState({
+    stylesData: state => state.styles.stylesData
+  }),
+  mounted() {},
   methods: {},
   destroyed() {}
 }

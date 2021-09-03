@@ -77,19 +77,15 @@ export default {
       this.isShowHomeAnimation = true
     }
     this.getProductStyle()
+
   },
   methods: {
-    getProductStyle() {
-      this.request('ProductStyle', {}).then((res) => {
-        const { code, data } = res
-        if (code === 20000 && data) {
-          const { styles } = data
-          this.stylesData = styles
-          window.stylesData = styles
-        }
-      }, err => {
-        this.$Toast(err)
-      })
+    async getProductStyle() {
+      const { code, data } = await this.$store.dispatch('styles/getStylesData')
+      if (code === 20000 && data) {
+        const { styles } = data
+        this.stylesData = styles
+      }
     },
     handleSelect() {
       this.isShowSelectedStyle = !this.isShowSelectedStyle
