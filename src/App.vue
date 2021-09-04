@@ -125,7 +125,8 @@ img[lazy=error] {
   height: 100%;
   text-align: center;
   overflow: hidden;
-  background: url("./images/jiayue_logo.png") center center no-repeat #000000;
+  // background: url("./images/jiayue_logo.png") center center no-repeat #000000;
+  background: url("./images/logo2.png") center center no-repeat #FFFFFF;
 }
 
 .global-header {

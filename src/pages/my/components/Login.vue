@@ -26,7 +26,7 @@
     
     <div class="login-wechat" >
       <div class="btn-login f-b" @click="handleLogin">登 录</div>
-      <img src="../../../images/wechat.png" />
+      <img @click="handleWechatLogin" src="../../../images/wechat.png" />
   </div>
   </div>
 </template>
@@ -91,7 +91,6 @@ export default {
         this.$Toast(err)
       })
     },
-    
     handlePassword(show) {
       if (show === 'show') {
         this.showPassword = true
@@ -101,6 +100,9 @@ export default {
         this.passwordType = 'password'
       }
     },
+    handleWechatLogin() {
+      
+    }
   }
 }
 </script>
