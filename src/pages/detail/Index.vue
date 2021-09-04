@@ -95,7 +95,6 @@ export default {
     handleFav() {
       // 登录验证
       if (!this.validateLogin()) return 
-      // 请求收藏接口 @TODO
 
       this.request('Fave', {
         productId: this.productData.id
@@ -103,7 +102,6 @@ export default {
         const { code, data } = res
         if (code === 20000) {
           this.productData.hasFollowed = !this.productData.hasFollowed
-          console.log(this.productData.hasFollowed)
         }
       }, err => {
         this.$Toast(err)
