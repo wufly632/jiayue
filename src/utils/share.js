@@ -29,7 +29,7 @@ export function share({ that, title, content, shareImage}) {
           cancel: function () {},
         })
         // 分享给朋友
-        wx.updateAppMessageShareData({
+        wx.updateTimelineShareData({
           title: title, // 分享标题
           desc: content, // 分享描述
           link: location.href, // 分享链接
