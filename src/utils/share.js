@@ -27,6 +27,9 @@ export function share({ that, title, content, shareImage}) {
           imgUrl: shareImage, // 分享图标
           success: function () {},
           cancel: function () {},
+          complete: function(res) {
+            console.log("res",res)
+          }
         })
         // 分享给朋友
         wx.onMenuShareTimeline({
@@ -37,6 +40,7 @@ export function share({ that, title, content, shareImage}) {
           success: function () {},
           cancel: function () {},
         })
+        console.log(456)
       })
     } else {
       alert(`系统异常，code非200${msg}`)
@@ -45,9 +49,6 @@ export function share({ that, title, content, shareImage}) {
 
   wx.error(function (res) {
     alert(`系统异常error${res.errMsg}`)
-  })
-  wx.complete(function(res) {
-    console.log(res)
   })
 }
 
