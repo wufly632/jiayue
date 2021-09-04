@@ -115,7 +115,7 @@ export default {
       if (isWec) {
         share({
           that: this,
-          title: this.productData.title,
+          title: this.productData.productModel,
           content: this.productData.productModel,
           shareImage: this.productData.pictures[0],
         })

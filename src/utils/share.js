@@ -41,12 +41,14 @@ export function share({ that, title, content, shareImage}) {
         })
       })
     } else {
-      alert(`系统异常，code非200${msg}`)
+      console.log(msg)
+      alert(msg)
     }
   })
 
   wx.error(function (res) {
-    alert(`系统异常error${res.errMsg}`)
+    console.log(res.errMsg)
+    alert(res.errMsg)
   })
 }
 
