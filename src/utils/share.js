@@ -46,6 +46,9 @@ export function share({ that, title, content, shareImage}) {
   wx.error(function (res) {
     alert(`系统异常error${res.errMsg}`)
   })
+  wx.complete(function(res) {
+    console.log(res)
+  })
 }
 
 export function isWechat() {
