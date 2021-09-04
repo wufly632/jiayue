@@ -8,14 +8,16 @@ export function share({ that, title, content, shareImage}) {
     if (res.code === 20000) {
       var config = res.data.config
       wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
+        // debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
         appId: config.appId, // 必填，公众号的唯一标识
         timestamp: config.timestamp, // 必填，生成签名的时间戳
         nonceStr: config.nonceStr, // 必填，生成签名的随机串
         signature: config.signature, // 必填，签名，见附录1
         jsApiList: [
-          "onMenuShareTimeline",
-          "onMenuShareAppMessage",
+          "updateTimelineShareData",
+          "updateAppMessageShareData",
+          // "onMenuShareTimeline",
+          // "onMenuShareAppMessage",
         ], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       })
 
@@ -43,7 +45,6 @@ export function share({ that, title, content, shareImage}) {
         })
       })
     } else {
-      alert('code 问题，系统异常')
       alert(res.msg || '系统异常')
     }
   })
