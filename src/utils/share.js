@@ -2,12 +2,13 @@ export function share({ that, title, content, shareImage}) {
   that.request('WechatShareUrl', {
     url: location.href
   }).then(res => {
-    const { code, data, msg } = res
+    console.log(res)
+    // const { code, data, msg } = res
     
-    if (code === 20000) {
-      const { config } = data
+    if (res.code === 20000) {
+      var config = res.data.config
       wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
         appId: config.appId, // 必填，公众号的唯一标识
         timestamp: config.timestamp, // 必填，生成签名的时间戳
         nonceStr: config.nonceStr, // 必填，生成签名的随机串
@@ -40,7 +41,8 @@ export function share({ that, title, content, shareImage}) {
         })
       })
     } else {
-      alert(msg || '系统异常')
+      alert('code 问题，系统异常')
+      alert(res.msg || '系统异常')
     }
   })
 
