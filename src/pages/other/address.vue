@@ -4,28 +4,30 @@
       v-for="item in addressInfo"
       :key="item"
       >
-      <div @click="handleAddress(item)" class="info address">
-        <span>地址：{{ item.content }}</span>
-        <i class="iconfont a-breathing">&#xe61e;</i>
+      <div v-if="item.content">
+        <div @click="handleAddress(item)" class="info address">
+          <span>地址：{{ item.content }}</span>
+          <i class="iconfont a-breathing">&#xe61e;</i>
+        </div>
+        <div class="info">
+          <div>联系方式：</div><div v-html="contactInfo"></div>
+        </div>
+        <!--接入百度地图-->
+        <baidu-map 
+          ak="65tosCDVrGImO5wpyGNFsu37a2yL5OGp" 
+          :center="{lng: item.longitude,lat: item.latitude}" 
+          :zoom="16"
+          :scroll-wheel-zoom="true"
+          class="map">
+          <bm-navigation ></bm-navigation>
+          <bm-marker :position="{lng: item.longitude,lat: item.latitude}" :dragging="true" @click="show = true">
+            <bm-info-window :show="show" @close="show = false" @open="show = true" style="font-size:13px">
+              {{ item.title }}<br><br>
+              地址：{{ item.content }}
+            </bm-info-window>
+          </bm-marker> 
+        </baidu-map>
       </div>
-      <div class="info">
-        <div>联系方式：</div><div v-html="contactInfo"></div>
-      </div>
-      <!--接入百度地图-->
-      <baidu-map 
-        ak="65tosCDVrGImO5wpyGNFsu37a2yL5OGp" 
-        :center="{lng: item.longitude,lat: item.latitude}" 
-        :zoom="16"
-        :scroll-wheel-zoom="true"
-        class="map">
-        <bm-navigation ></bm-navigation>
-        <bm-marker :position="{lng: item.longitude,lat: item.latitude}" :dragging="true" @click="show = true">
-          <bm-info-window :show="show" @close="show = false" @open="show = true" style="font-size:13px">
-            {{ item.title }}<br><br>
-            地址：{{ item.content }}
-          </bm-info-window>
-        </bm-marker> 
-      </baidu-map>
     </div>
 
     <!-- modal -->

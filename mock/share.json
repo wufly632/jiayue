@@ -5,25 +5,12 @@
     "config": {
       "debug": true,
       "beta": true,
-      "jsApiList": [
-        "eiusmod nostrud anim enim cillum",
-        "in ipsum",
-        "Excepteur pariatur in deserunt et",
-        "Ut ad sit aliqua",
-        "ut fugiat"
-      ],
-      "openTagList": [
-        "qui minim",
-        "anim commodo quis",
-        "pariatur cillum",
-        "laborum eiusmod ea",
-        "dolore eu officia enim"
-      ],
-      "appId": "28",
-      "nonceStr": "exercitation deserunt fugiat",
-      "timestamp": 1029246285387,
-      "url": "http://qhrxgycsd.tk/sobxdwkag",
-      "signature": "et culpa cillum"
+      "jsApiList": [],
+      "openTagList": [],
+      "appId": "wx001e954fb378a183",
+      "nonceStr": "fZT9vWsz4V",
+      "timestamp": 1630733893,
+      "signature": "4c9c110dc1243450f7568cb5470f59e8232d5627"
     }
   }
 }
