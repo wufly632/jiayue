@@ -8,7 +8,7 @@ export function share({ that, title, content, shareImage}) {
     if (code === 20000) {
       const { config } = data
       wx.config({
-        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
         appId: config.appId, // 必填，公众号的唯一标识
         timestamp: config.timestamp, // 必填，生成签名的时间戳
         nonceStr: config.nonceStr, // 必填，生成签名的随机串
@@ -24,7 +24,8 @@ export function share({ that, title, content, shareImage}) {
           title: title, // 分享标题
           desc: content, // 分享描述
           link: location.href, // 分享链接
-          imgUrl: shareImage, // 分享图标
+          // imgUrl: shareImage, // 分享图标
+          imgUrl: 'https://jiayue.wufly.cn/r2.png', // 分享图标
           complete: function(res) {
             console.log('updateAppMessageShareData complete')
           }
@@ -35,7 +36,8 @@ export function share({ that, title, content, shareImage}) {
           title: title, // 分享标题
           desc: content, // 分享描述
           link: location.href, // 分享链接
-          imgUrl: shareImage, // 分享图标
+          // imgUrl: shareImage, // 分享图标
+          imgUrl: 'https://jiayue.wufly.cn/r2.png', // 分享图标
         })
       })
     } else {
