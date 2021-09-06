@@ -24,7 +24,8 @@ export function share({ that, title, content, shareImage}) {
           title: title, // 分享标题
           desc: content, // 分享描述
           link: location.href, // 分享链接
-          imgUrl: shareImage, // 分享图标
+          // imgUrl: shareImage, // 分享图标
+          imgUrl: 'https://jiayue.wufly.cn/r2.png',
           success: function () {},
           cancel: function () {},
           complete: function(res) {
@@ -38,6 +39,7 @@ export function share({ that, title, content, shareImage}) {
           desc: content, // 分享描述
           link: location.href, // 分享链接
           imgUrl: shareImage, // 分享图标
+          imgUrl: 'https://jiayue.wufly.cn/r2.png',
           success: function () {},
           cancel: function () {},
         })
