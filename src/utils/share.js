@@ -13,13 +13,7 @@ export function share({ that, title, content, shareImage}) {
         timestamp: config.timestamp, // 必填，生成签名的时间戳
         nonceStr: config.nonceStr, // 必填，生成签名的随机串
         signature: config.signature, // 必填，签名，见附录1
-        jsApiList: [
-          'checkJsApi',
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage',
-          'updateAppMessageShareData',
-          'updateTimelineShareData'
-        ], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        jsApiList: config.jsApiList, // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
       })
 
       wx.ready(function () {
@@ -30,10 +24,7 @@ export function share({ that, title, content, shareImage}) {
           title: title, // 分享标题
           desc: content, // 分享描述
           link: location.href, // 分享链接
-          // imgUrl: shareImage, // 分享图标
-          imgUrl: 'https://jiayue.wufly.cn/r2.png',
-          success: function () {},
-          cancel: function () {},
+          imgUrl: shareImage, // 分享图标
           complete: function(res) {
             console.log('updateAppMessageShareData complete')
           }
@@ -45,9 +36,6 @@ export function share({ that, title, content, shareImage}) {
           desc: content, // 分享描述
           link: location.href, // 分享链接
           imgUrl: shareImage, // 分享图标
-          imgUrl: 'https://jiayue.wufly.cn/r2.png',
-          success: function () {},
-          cancel: function () {},
         })
       })
     } else {
@@ -57,6 +45,8 @@ export function share({ that, title, content, shareImage}) {
   })
 
   wx.error(function (res) {
+    console.log('打印 error:')
+    console.log(res)
     alert(res.errMsg)
   })
 }
