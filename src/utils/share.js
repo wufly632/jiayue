@@ -36,15 +36,17 @@ export function share({ that, title, content, shareImage}) {
           cancel: function () {
               console.log("分享取消2");
           }
+        },function() {
+          console.log(145221)
         })
-        // 分享给朋友
-        wx.updateTimelineShareData({
-        // wx.onMenuShareTimeline({
-          title: title, // 分享标题
-          desc: content, // 分享描述
-          link: location.href, // 分享链接
-          imgUrl: shareImage, // 分享图标
-        })
+        // // 分享给朋友
+        // wx.updateTimelineShareData({
+        // // wx.onMenuShareTimeline({
+        //   title: title, // 分享标题
+        //   desc: content, // 分享描述
+        //   link: location.href, // 分享链接
+        //   imgUrl: shareImage, // 分享图标
+        // })
       })
     } else {
       console.log('出错了！？' + msg)
