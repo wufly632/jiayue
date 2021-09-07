@@ -27,6 +27,14 @@ export function share({ that, title, content, shareImage}) {
           imgUrl: shareImage, // 分享图标
           complete: function(res) {
             console.log('updateAppMessageShareData complete')
+          },
+          success: function () {
+            // 用户点击了分享后执行的回调函数
+            alert("分享成功2");//不要用alert，不然错误无法wx.error无法执行
+            console.log("分享成功2");
+          },
+          cancel: function () {
+              console.log("分享取消2");
           }
         })
         // 分享给朋友
