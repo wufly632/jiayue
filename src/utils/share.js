@@ -3,8 +3,6 @@ export function share({ that, title, content, shareImage}) {
     url: location.href
   }).then(res => {
     const { code, data, msg } = res
-    console.log(res)
-    
     if (code === 20000) {
       const { config } = data
       wx.config({
@@ -25,17 +23,9 @@ export function share({ that, title, content, shareImage}) {
           desc: content, // 分享描述
           link: location.href, // 分享链接
           imgUrl: imgUrl, // 分享图标
-          complete: function(res) {
-            console.log('updateAppMessageShareData complete')
-          },
-          success: function () {
-            // 用户点击了分享后执行的回调函数
-            alert("分享成功2");//不要用alert，不然错误无法wx.error无法执行
-            console.log("分享成功2");
-          },
-          cancel: function () {
-              console.log("分享取消2");
-          }
+          complete: function(res) {},
+          success: function () {},
+          cancel: function () {}
         })
         // 分享给朋友
         wx.updateTimelineShareData({
@@ -46,14 +36,10 @@ export function share({ that, title, content, shareImage}) {
           imgUrl: shareImage, // 分享图标
         })
       })
-    } else {
-      console.log('出错了！？' + msg)
-    }
+    } else {}
   })
 
   wx.error(function (res) {
-    console.log('打印 error:')
-    console.log(res)
     alert(res.errMsg)
   })
 }

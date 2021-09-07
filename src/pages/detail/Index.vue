@@ -1,5 +1,11 @@
 <template>
   <div class="detail-main">
+    <div class="share-icon" @click="isShowShare = false" v-show="isShowShare">
+      <div class="icon">
+        <i class="iconfont">&#xe640;</i>
+        <div>点击此处去分享&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      </div>
+    </div>
     <div class="detail-top-bar">
       <div class="detail-top-bar-center">
         <div class="back" @click="()=> { this.$router.go(-1) }">
@@ -50,13 +56,22 @@ export default {
   data () {
     return {
       productData: {},
-      wurl: window.location.href
+      wurl: window.location.href,
+      isShowShare: false,
     }
   },
   created () {
     this.getDetailData()
   },
-  mounted () {},
+  mounted () {
+    // 微信分享
+    share({
+      that: this,
+      title: 'Inside co 迦悦生活',
+      content: this.productData.productModel,
+      shareImage: this.productData.pictures[0],
+    })
+  },
   watch: {
     '$route.params.id': function(val) {
       if (val) {
@@ -111,12 +126,7 @@ export default {
     handleShare() {
       let isWec = isWechat()
       if (isWec) {
-        share({
-          that: this,
-          title: this.productData.productModel,
-          content: this.productData.productModel,
-          shareImage: this.productData.pictures[0],
-        })
+        this.isShowShare = true
       } else {
         this.handleCopy()
         setTimeout(() => {
@@ -143,6 +153,27 @@ export default {
 
 .detail-main {
   position: relative;
+
+  .share-icon {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    .icon {
+      position: absolute;
+      right: 0;
+    }
+    i {
+      font-size: .8rem;
+    }
+    > div {
+      font-size: .28rem;
+    }
+  }
+
   .detail-swipe {
     .img-swipe {
       height: 500/@rem;
