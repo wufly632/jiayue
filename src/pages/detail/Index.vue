@@ -3,7 +3,7 @@
     <div class="share-icon" @click="isShowShare = false" v-show="isShowShare">
       <div class="icon">
         <i class="iconfont">&#xe640;</i>
-        <div>点击此处去分享&nbsp;&nbsp;&nbsp;&nbsp;</div>
+         <div>去分享&nbsp;&nbsp;</div>
       </div>
     </div>
     <div class="detail-top-bar">

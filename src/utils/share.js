@@ -6,7 +6,7 @@ export function share({ that, title, content, shareImage}) {
     if (code === 20000) {
       const { config } = data
       wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来
         appId: config.appId, // 必填，公众号的唯一标识
         timestamp: config.timestamp, // 必填，生成签名的时间戳
         nonceStr: config.nonceStr, // 必填，生成签名的随机串
