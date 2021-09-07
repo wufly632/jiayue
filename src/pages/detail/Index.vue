@@ -64,13 +64,7 @@ export default {
     this.getDetailData()
   },
   mounted () {
-    // 微信分享
-    share({
-      that: this,
-      title: 'Inside co 迦悦生活',
-      content: this.productData.productModel,
-      shareImage: this.productData.pictures[0],
-    })
+    
   },
   watch: {
     '$route.params.id': function(val) {
@@ -90,6 +84,13 @@ export default {
         const { code, data } = res
         if (code === 20000 && data) {
           this.productData = data
+          // 微信分享
+          share({
+            that: this,
+            title: 'Inside co 迦悦生活',
+            content: this.productData.productModel,
+            shareImage: this.productData.pictures[0],
+          })
         }
 
         this.$Indicator.close()
