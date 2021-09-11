@@ -41,7 +41,7 @@ export function share({ that, title, content, shareImage}) {
   })
 
   wx.error(function (res) {
-    alert(res.errMsg)
+    // alert(res.errMsg)
   })
 }
 

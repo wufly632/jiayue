@@ -20,7 +20,7 @@
     <div class="detail-swipe">
       <Swipe class="my-swipe img-swipe" :showIndicators="false" :showNum="true">
         <SwipeItem v-for="(img, index) in productData.pictures" :key="index">
-          <img :src="img && img.ossimg()" :preview="index">
+          <img :src="img && img.formatOssimg(750)" :preview="index">
         </SwipeItem>
       </Swipe>
     </div>
@@ -33,14 +33,14 @@
       
       <div class="title f-b">{{ productData.productModel }}</div>
       <div class="sub-title">
-        <span v-if="productData.title">{{ productData.title }}&nbsp;&nbsp;</span>
+        <span v-if="productData.title">{{ productData44432.title }}&nbsp;&nbsp;</span>
         {{ productData.materialChangeAble ? '材质可换' : '' }}
       </div>
     </div>
 
     <div class="detail-imagelist" v-if="productData.pictures">
       <div class="title">产品详情</div>
-      <img v-for="(item,index) in productData.detailPictures" :key="index" :preview="index" v-lazy="item && item.ossimg()"/>
+      <img v-for="(item,index) in productData.detailPictures" :key="index" :preview="index" v-lazy="item && item.formatOssimg(750)"/>
     </div>
   </div>
 </template>

@@ -14,7 +14,7 @@
           :to="{ path: `/detail/${productItem.id}`}" >
           <div class="img">
             <div class="close" @click.prevent="handleFav(productItem.id)"><i class="iconfont">&#xe60b;</i></div>
-            <img v-lazy="productItem.mainPicture && productItem.mainPicture.ossimg()" />
+            <img v-lazy="productItem.mainPicture && productItem.mainPicture.formatOssimg(750)" />
           </div>
           <div class="text">
             <div class="title">{{ productItem.productModel }}</div>

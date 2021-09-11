@@ -7,7 +7,7 @@
         :key="index"
         :to="{ path: `/caseDetail/${item.id}`}" >
         <div class="img">
-          <img v-lazy="item.mainPicture && item.mainPicture.ossimg()" />
+          <img v-lazy="item.mainPicture && item.mainPicture.formatOssimg(750)" />
         </div>
         <div class="text">
           <div class="title">{{ item.title }}</div>

@@ -5,7 +5,7 @@
         v-for="(item, index) in stylesData"
         :key="index"
         :to="{ path: '/category/' + item.id  }">
-        <img :src="item.bigPicture && item.bigPicture.ossimg()" />
+        <img :src="item.bigPicture && item.bigPicture.formatOssimg(750)" />
       </router-link>
     </div>
   </div>
