@@ -73,6 +73,9 @@ export default {
       localStorage.removeItem('jiayue_token')
       this.isLogin = false
       this.isShowLogin = true
+      this.$router.replace({
+        path: '/my'
+      })
     }
   }
 }

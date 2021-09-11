@@ -28,7 +28,7 @@
       <div class="btn-login f-b" @click="handleLogin">登 录</div>
       <div class="qr-container" id="login_container"></div>
       <img @click="handleWechatLogin" src="../../../images/wechat.png" />
-  </div>
+    </div>
   </div>
 </template>
 
