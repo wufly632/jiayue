@@ -33,7 +33,7 @@
       
       <div class="title f-b">{{ productData.productModel }}</div>
       <div class="sub-title">
-        <span v-if="productData.title">{{ productData44432.title }}&nbsp;&nbsp;</span>
+        <span v-if="productData.title">{{ productData.title }}&nbsp;&nbsp;</span>
         {{ productData.materialChangeAble ? '材质可换' : '' }}
       </div>
     </div>
