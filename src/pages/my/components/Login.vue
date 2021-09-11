@@ -109,7 +109,7 @@ export default {
     },
     handleWechatLogin() {
       var obj = new WxLogin({
-        self_redirect: true,
+        self_redirect: false,
         id: 'login_container', 
         appid: 'wx80778218fe50bf86', 
         scope: 'snsapi_login', 
