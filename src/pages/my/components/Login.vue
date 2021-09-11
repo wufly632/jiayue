@@ -62,9 +62,9 @@ export default {
         password: ''
       }
     },
-    '$route.params.wechat': function(val) {
+    '$route.params.code': function(val) {
       if (val) {
-        this.handleWechatLoginApi()
+        this.handleWechatLoginApi(val)
       }
     }
   },
@@ -107,20 +107,21 @@ export default {
       }
     },
     handleWechatLogin() {
-      let url = location.href + (location.href.includes('?') ? '&' : '?') + 'wechat=true'
-      new WxLogin({
+      var obj = new WxLogin({
         self_redirect: true,
         id: 'login_container', 
         appid: 'wx001e954fb378a183', 
-        scope: '', 
-        redirect_uri: encodeURIComponent(url),
-        state: '',
-        style: '',
+        scope: 'snsapi_login', 
+        redirect_uri: encodeURIComponent(location.href),
+        state:  Math.ceil(Math.random()*1000),
+        style: 'black',
         href: ''
       })
     },
-    handleWechatLoginApi() {
-      this.request('WechatLogin', {}).then((res) => {
+    handleWechatLoginApi(val) {
+      this.request('WechatLogin', {
+        code: val
+      }).then((res) => {
         const { code, data } = res
         if (code === 20000 && data) {
           const { accessToken } = data
