@@ -8,7 +8,7 @@
     </div>
     <div class="detail-top-bar">
       <div class="detail-top-bar-center">
-        <div class="back" @click="()=> { this.$router.go(-1) }">
+        <div class="back" @click="handleBack">
           <i class="iconfont">&#xe62f;</i>
         </div>
         <div class="share" @click="handleShare" :data-clipboard-text="wurl">
@@ -144,6 +144,14 @@ export default {
       clipboard.on('error', function() {
         // self.$Toast('复制失败')
       })
+    },
+    handleBack() {
+      if (window.history.length <= 1) {
+        this.$router.push({path:'/'})
+        return false
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }
@@ -165,7 +173,8 @@ export default {
     color: #fff;
     .icon {
       position: absolute;
-      right: 0;
+      top: 10/@rem;
+      right: 30/@rem;
     }
     i {
       font-size: .8rem;
