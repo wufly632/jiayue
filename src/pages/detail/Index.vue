@@ -33,7 +33,7 @@
       
       <div class="title f-b">{{ productData.productModel }}</div>
       <div class="sub-title">
-        <span v-if="productData.title">{{ productData.title }}，</span>
+        <span v-if="productData.title">{{ productData.title }}&nbsp;&nbsp;</span>
         {{ productData.materialChangeAble ? '材质可换' : '' }}
       </div>
     </div>
@@ -90,7 +90,7 @@ export default {
           // 微信分享
           share({
             that: this,
-            title: (this.productData.title ? (this.productData.title + '，') : '') + (this.productData.materialChangeAble ? '材质可换' : ''),
+            title: (this.productData.title ? (this.productData.title + '&nbsp;&nbsp;') : '') + (this.productData.materialChangeAble ? '材质可换' : ''),
             content: this.productData.productModel,
             shareImage: this.productData.pictures[0],
           })

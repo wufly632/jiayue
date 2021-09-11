@@ -1,6 +1,7 @@
 export function share({ that, title, content, shareImage}) {
+  let url = encodeURIComponent(location.href.split('#')[0])
   that.request('WechatShareUrl', {
-    url: location.href
+    url,
   }).then(res => {
     const { code, data, msg } = res
     if (code === 20000) {
@@ -21,7 +22,7 @@ export function share({ that, title, content, shareImage}) {
         // wx.onMenuShareAppMessage({
           title: title, // 分享标题
           desc: content, // 分享描述
-          link: location.href, // 分享链接
+          link: url, // 分享链接
           imgUrl: imgUrl, // 分享图标
           complete: function(res) {},
           success: function () {},
@@ -32,7 +33,7 @@ export function share({ that, title, content, shareImage}) {
         // wx.onMenuShareTimeline({
           title: title, // 分享标题
           desc: content, // 分享描述
-          link: location.href, // 分享链接
+          link: url, // 分享链接
           imgUrl: shareImage, // 分享图标
         })
       })
