@@ -40,7 +40,7 @@
 
     <div class="detail-imagelist" v-if="productData.pictures">
       <div class="title">产品详情</div>
-      <img v-for="(item,index) in productData.detailPictures" :key="index" :preview="index" v-lazy="item && item.formatOssimg(750)"/>
+      <img v-for="(item,index) in productData.detailPictures" :key="index" :preview="index" v-lazy="item && item.formatOssimg(1400)"/>
     </div>
   </div>
 </template>
