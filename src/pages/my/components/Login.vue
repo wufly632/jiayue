@@ -26,7 +26,7 @@
     
     <div class="login-wechat" >
       <div class="btn-login f-b" @click="handleLogin">登 录</div>
-      <img @click="handleWechatLogin" src="../../../images/wechat.png" />
+      <img id="login_container" @click="handleWechatLogin" src="../../../images/wechat.png" />
   </div>
   </div>
 </template>
@@ -107,12 +107,17 @@ export default {
       }
     },
     handleWechatLogin() {
-      // let isWt = isWechat()
       let url = location.href + (location.href.includes('?') ? '&' : '?') + 'wechat=true'
-
-      const path = encodeURIComponent(url)
-      location.replace('https://open.weixin.qq.com/connect/qrconnect?appid=wx001e954fb378a183&redirect_uri=' + path + '&scope=snsapi_login#wechat_redirect')
-      
+      new WxLogin({
+        self_redirect: true,
+        id: 'login_container', 
+        appid: 'wx001e954fb378a183', 
+        scope: '', 
+        redirect_uri: encodeURIComponent(url),
+        state: '',
+        style: '',
+        href: ''
+      })
     },
     handleWechatLoginApi() {
       this.request('WechatLogin', {}).then((res) => {

@@ -32,7 +32,10 @@
       </div>
       
       <div class="title f-b">{{ productData.productModel }}</div>
-      <div class="sub-title">{{ productData.materialChangeAble ? '材质可换' : '' }}</div>
+      <div class="sub-title">
+        <span v-if="productData.title">{{ productData.title }}，</span>
+        {{ productData.materialChangeAble ? '材质可换' : '' }}
+      </div>
     </div>
 
     <div class="detail-imagelist" v-if="productData.pictures">
