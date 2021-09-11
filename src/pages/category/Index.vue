@@ -36,7 +36,7 @@
           </div>
           <div class="text">
             <div class="title">{{ productItem.productModel }}</div>
-            <div class="sub-title">{{ productItem.materialChangeAble ? '材质可换' : '' }}</div>
+            <div class="sub-title">{{ productItem.name }}</div>
           </div>
         </router-link>
       </div>
