@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { isWechat } from 'utils/share'
+
 export default {
   props: {
     isShow: {
@@ -53,6 +53,8 @@ export default {
   },
   created() {
     this.$Indicator.close()
+    const code = this.$route.query.code
+    code && this.handleWechatLoginApi(code)
   },
   watch: {
     'isShow': function() {
@@ -63,11 +65,6 @@ export default {
         password: ''
       }
     },
-    '$route.params.code': function(val) {
-      if (val) {
-        this.handleWechatLoginApi(val)
-      }
-    }
   },
   methods: {
     checkPhone() { 
