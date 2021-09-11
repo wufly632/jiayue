@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { isWechat } from 'utils/share'
 export default {
   props: {
     isShow: {
@@ -101,7 +102,14 @@ export default {
       }
     },
     handleWechatLogin() {
-      
+      let isWt = isWechat()
+
+      if (isWt) {
+        const path = encodeURIComponent(location.href)
+        location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx001e954fb378a183&redirect_uri=' + path + '&response_type=code&scope=snsapi_userinfo&state=' + new Date().getTime() + '#wechat_redirect')
+      } else {
+        this.$Toast('请在微信中打开登录')
+      }
     }
   }
 }
