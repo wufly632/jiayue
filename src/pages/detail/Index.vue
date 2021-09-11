@@ -66,9 +66,7 @@ export default {
   created () {
     this.getDetailData()
   },
-  mounted () {
-    
-  },
+  mounted () {},
   watch: {
     '$route.params.id': function(val) {
       if (val) {
@@ -90,8 +88,8 @@ export default {
           // 微信分享
           share({
             that: this,
-            title: (this.productData.title ? (this.productData.title + '&nbsp;&nbsp;') : '') + (this.productData.materialChangeAble ? '材质可换' : ''),
-            content: this.productData.productModel,
+            title: 'Inside co 迦悦生活 ' + this.productData.productModel,
+            content: this.productData.title + '  ' + (this.productData.materialChangeAble ? '材质可换' : ''),
             shareImage: this.productData.pictures[0],
           })
         }
