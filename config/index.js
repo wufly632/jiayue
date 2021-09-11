@@ -8,7 +8,7 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: '',
     // assetsPublicPath: process.env.NODE_BUILD === 'dev' ?  './' : './',
-    assetsPublicPath: process.env.NODE_BUILD === 'dev' ?  '//static.pdever.cn/' : './',
+    assetsPublicPath: process.env.NODE_BUILD === 'dev' ?  '//static.pdever.cn/' : '//static.jiayue.store/',
     productionSourceMap: false, // 设为true生成map可以作调试
     // productionGzip: false,
     // productionGzipExtensions: ['js', 'css'],
