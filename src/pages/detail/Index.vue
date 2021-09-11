@@ -90,7 +90,7 @@ export default {
           // 微信分享
           share({
             that: this,
-            title: 'Inside co 迦悦生活',
+            title: (this.productData.title ? (this.productData.title + '，') : '') + (this.productData.materialChangeAble ? '材质可换' : ''),
             content: this.productData.productModel,
             shareImage: this.productData.pictures[0],
           })
