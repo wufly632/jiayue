@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { share } from 'utils/share'
+// import { share } from 'utils/share'
 import { mapState } from 'vuex'
 export default {
   components: {},
@@ -27,12 +27,12 @@ export default {
   }),
   mounted() {
     // 微信分享
-    // share({
-    //   that: this,
-    //   title: 'Inside co 迦悦生活',
-    //   content: 'Inside co 迦悦生活',
-    //   shareImage: 'https://wufly.oss-cn-hangzhou.aliyuncs.com/jiayue/logo_wechat.png',
-    // })
+    share({
+      that: this,
+      title: 'Inside co 迦悦生活',
+      content: 'Inside co 迦悦生活 首页',
+      shareImage: 'https://wufly.oss-cn-hangzhou.aliyuncs.com/jiayue/logo_wechat.png',
+    })
   },
   methods: {},
   destroyed() {}
