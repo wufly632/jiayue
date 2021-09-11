@@ -143,6 +143,18 @@
   }
 
   .login-wechat {
+    position: relative;
+    .qr-container {
+      position: absolute;
+      right: 0;
+      top: -240/@rem;
+      background-color: #fff;
+    }
+    .impowerBox .qrcode {width: 200/@rem;}
+    .impowerBox .title {display: none;}
+    .impowerBox .info {width: 200/@rem;}
+    .status_icon {display: none}
+    .impowerBox .status {text-align: center;}
     .flex-between();
     .btn-login {
       width: 580/@rem;

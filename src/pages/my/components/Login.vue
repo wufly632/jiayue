@@ -24,9 +24,10 @@
       </div>
     </div>
     
-    <div class="login-wechat" >
+    <div class="login-wechat">
       <div class="btn-login f-b" @click="handleLogin">登 录</div>
-      <img id="login_container" @click="handleWechatLogin" src="../../../images/wechat.png" />
+      <div class="qr-container" id="login_container"></div>
+      <img @click="handleWechatLogin" src="../../../images/wechat.png" />
   </div>
   </div>
 </template>
@@ -110,7 +111,7 @@ export default {
       var obj = new WxLogin({
         self_redirect: true,
         id: 'login_container', 
-        appid: 'wx001e954fb378a183', 
+        appid: 'wx80778218fe50bf86', 
         scope: 'snsapi_login', 
         redirect_uri: encodeURIComponent(location.href),
         state:  Math.ceil(Math.random()*1000),
