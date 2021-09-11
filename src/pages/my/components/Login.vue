@@ -107,15 +107,12 @@ export default {
       }
     },
     handleWechatLogin() {
-      let isWt = isWechat()
+      // let isWt = isWechat()
       let url = location.href + (location.href.includes('?') ? '&' : '?') + 'wechat=true'
 
-      if (isWt) {
-        const path = encodeURIComponent(url)
-        location.replace('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx001e954fb378a183&redirect_uri=' + path + '&response_type=code&scope=snsapi_userinfo&state=' + new Date().getTime() + '#wechat_redirect')
-      } else {
-        this.$Toast('请在微信中打开登录')
-      }
+      const path = encodeURIComponent(url)
+      location.replace('https://open.weixin.qq.com/connect/qrconnect?appid=wx001e954fb378a183&redirect_uri=' + path + '&scope=snsapi_login#wechat_redirect')
+      
     },
     handleWechatLoginApi() {
       this.request('WechatLogin', {}).then((res) => {
