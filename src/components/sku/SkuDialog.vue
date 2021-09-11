@@ -3,7 +3,7 @@
     <div class="dialog-content a-fadeinS">
       <div class="goods-info">
         <div @click="handleShowSwipe">
-          <img class="big-img" :src="params.productInfo.mainPicture && params.productInfo.mainPicture.formatOssimg(200)" />
+          <img class="big-img" :src="params.productInfo.mainPicture && params.productInfo.mainPicture.ossimg()" />
           <div class="swipe-open">
             <img src="../../images/cart/icon_open.png" />
           </div>
@@ -31,7 +31,7 @@
                     href="javascript:;" 
                     @click="handleSku(item, itemVal)">
                     <span v-if="index === 0">
-                      <img :src="itemVal.mainPicture && itemVal.mainPicture.formatOssimg(100)" />
+                      <img :src="itemVal.mainPicture && itemVal.mainPicture.ossimg()" />
                     </span>
                     <span v-else>{{ itemVal.name }}</span>
                   </a>
@@ -72,7 +72,7 @@
           v-for="(img, index) in imgSwipe"
           :key="index">
           <div class="flex-center">
-            <img :src="img && img.formatOssimg(400)">
+            <img :src="img && img.ossimg()">
           </div>
         </SwipeItem>
       </Swipe>
@@ -84,7 +84,7 @@
           class="icon-border"
           :class="{'active': iconImageActive === index }"
           @click="handleIconImage(index)">
-          <img :src="img && img.formatOssimg(100)" class="icon-img" />
+          <img :src="img && img.ossimg()" class="icon-img" />
         </div>
       </div>
     </div>

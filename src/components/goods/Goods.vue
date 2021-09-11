@@ -9,7 +9,7 @@
         <div 
           class="goods-img"
           :class="{'fav-active': item.isFave}">
-          <img v-lazy="item.mainPicture && item.mainPicture.formatOssimg(200)"/>
+          <img v-lazy="item.mainPicture && item.mainPicture.ossimg()"/>
           <div class="img-active"></div>
           <div class="activity-img" v-if="item.sellingPrice && percentage(item.comparePrice - item.sellingPrice, item.comparePrice)">
             <div class="word" >-{{ percentage(item.comparePrice - item.sellingPrice, item.comparePrice) }}%</div>
