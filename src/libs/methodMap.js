@@ -37,7 +37,7 @@ const methodMap = {
   /** 微信分享 **/
   WechatShareUrl: {url: '/api/backend/wechat/shareUrl', method: 'get'},
   
-  
+  WechatLogin: {url: '/api/backend/wechat/login', method: 'post'},
 }
 
 export default methodMap
