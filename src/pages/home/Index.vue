@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// import { share } from 'utils/share'
+import { share } from 'utils/share'
 import { mapState } from 'vuex'
 export default {
   components: {},
