@@ -154,15 +154,16 @@ img[lazy=error] {
       align-items: center;
       width: 200/@rem;
       .select-style {
+        margin-left: -10/@rem;
         img {
-          height: 40/@rem;
+          height: 60/@rem;
         }
       }
       i {
         font-weight: bold;
         font-size: 30/@rem;
         color: #cecece;
-        // margin-left: 20/@rem;
+        margin-left: 10/@rem;
       }
     }
   }
@@ -175,14 +176,14 @@ img[lazy=error] {
     font-weight: bold;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
     .content {
-      padding: 20/@rem 30/@rem;
+      padding: 0 20/@rem;
       background-color: #ffffff;
       border-bottom: 1px solid #ececec;
       border-right: 1px solid #ececec;
       min-width: 2.4rem;
 
       img {
-        height: 40/@rem;
+        height: 60/@rem;
       }
     }
   } 
