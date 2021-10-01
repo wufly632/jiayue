@@ -125,8 +125,7 @@ img[lazy=error] {
   height: 100%;
   text-align: center;
   overflow: hidden;
-  // background: url("./images/jiayue_logo.png") center center no-repeat #000000;
-  background: url("./images/logo.jpeg") center center no-repeat #bea189;
+  background: url("./images/logo.png") center center no-repeat #bea189;
   background-size: 100% auto;
 }
 
