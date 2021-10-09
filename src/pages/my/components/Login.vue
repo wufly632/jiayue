@@ -54,7 +54,8 @@ export default {
   created() {
     this.$Indicator.close()
     const code = this.$route.query.code
-    code && this.handleWechatLoginApi(code)
+    const state = this.$route.query.state
+    code && this.handleWechatLoginApi(code,state)
   },
   watch: {
     'isShow': function() {
@@ -121,9 +122,10 @@ export default {
       }
       
     },
-    handleWechatLoginApi(val) {
+    handleWechatLoginApi(val,state) {
       this.request('WechatLogin', {
-        code: val
+        code: val,
+        state:state
       }).then((res) => {
         const { code, data } = res
         if (code === 20000 && data) {
