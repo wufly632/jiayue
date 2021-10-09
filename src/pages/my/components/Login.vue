@@ -105,16 +105,21 @@ export default {
       }
     },
     handleWechatLogin() {
-      var obj = new WxLogin({
-        self_redirect: false,
-        id: 'login_container', 
-        appid: 'wx80778218fe50bf86', 
-        scope: 'snsapi_login', 
-        redirect_uri: encodeURIComponent(location.href),
-        state:  Math.ceil(Math.random()*1000),
-        style: 'black',
-        href: ''
-      })
+      if (!this.isWeiXin()) {
+        var obj = new WxLogin({
+          self_redirect: false,
+          id: 'login_container', 
+          appid: 'wx80778218fe50bf86', 
+          scope: 'snsapi_login', 
+          redirect_uri: encodeURIComponent(location.href),
+          state:  Math.ceil(Math.random()*1000),
+          style: 'black',
+          href: ''
+        })
+      } else {
+        window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ced69550af66f2f&redirect_uri=https://www.jiayue.store/my&response_type=code&state=test&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+      }
+      
     },
     handleWechatLoginApi(val) {
       this.request('WechatLogin', {
@@ -138,6 +143,14 @@ export default {
         this.$Toast(err)
       })
     }
-  }
+  },
+  isWeiXin(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+        return true;
+    }else{
+        return false;
+    }
+}
 }
 </script>
