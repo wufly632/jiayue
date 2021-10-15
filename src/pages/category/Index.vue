@@ -87,7 +87,8 @@ export default {
   },
   methods: {
     getTpyes() {
-      this.request('ProductTypes', {}).then((res) => {
+      const { id } = route.params
+      this.request('ProductTypes', {typeId:id}).then((res) => {
         const { code, data } = res
         if (code === 20000 && data) {
           const { types } = data
