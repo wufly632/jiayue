@@ -8,7 +8,7 @@
         <div class="select-main" @click.stop="isShowSelectedStyle = !isShowSelectedStyle">
           <div class="select-style">
             <span v-if="selectedStyle === '风格选择'">风格选择</span>
-            <img v-else :src="selectedStyle && selectedStyle.ossimg()" />
+            <img v-else :src="selectedStyle && selectedStyle.formatOssimg(200)" />
           </div>
           <i class="iconfont" :class="{'rotate180': isShowSelectedStyle}">&#xe611;</i>
         </div>
@@ -18,9 +18,9 @@
         <div 
           class="content"
           v-for="(item, index) in stylesData" 
-          :key="index" 
+        :key="index" 
           @click="handleCategory(item)">
-          <img :src="item.smallPicture" />
+          <img :src="item.smallPicture && item.smallPicture.formatOssimg(200)" />
         </div>
       </div>
 
