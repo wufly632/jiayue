@@ -18,9 +18,11 @@
         <div 
           class="content"
           v-for="(item, index) in stylesData" 
-        :key="index" 
+          :key="index" 
           @click="handleCategory(item)">
-          <img :src="item.smallPicture && item.smallPicture.formatOssimg(200)" />
+            <!-- TODO -->
+            <!-- <img :src="item.smallPicture && item.smallPicture.formatOssimg(200)" /> -->
+             <img src="./images/jiayue_images/1.png" >
         </div>
       </div>
 
